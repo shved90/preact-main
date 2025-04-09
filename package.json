@@ -1,0 +1,28 @@
+{
+  "name": "main-rebuild",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "codegen": "graphql-codegen --config codegen.ts"
+  },
+  "dependencies": {
+    "@graphql-codegen/cli": "^5.0.5",
+    "@graphql-codegen/client-preset": "^4.7.0",
+    "@madebyconnor/rich-text-to-jsx": "^2.3.0",
+    "@tailwindcss/vite": "^4.0.14",
+    "@tanstack/react-query": "^5.67.2",
+    "graphql-request": "^7.1.2",
+    "preact": "^10.26.2",
+    "preact-iso": "^2.9.1",
+    "tailwindcss": "^4.0.14"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.10.1",
+    "typescript": "~5.7.2",
+    "vite": "^6.2.0"
+  }
+}
