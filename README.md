@@ -14,6 +14,8 @@ bun install
 bun dev
 ```
 
+If you have updated CMS with new data types, you'll need to ``` bun codegen ``` to generate typescript types inside /gql folder and import them in your components.
+
 ## TODO
 
 This is very much WIP atm, here's a list of things I want to add in no particular order, for myself to keep track of.

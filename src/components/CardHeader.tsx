@@ -20,7 +20,7 @@ const CardHeader = ({ data }: CardHeaderProps) => {
       {data.__typename == "Job" ?
         <header class="grid grid-cols-2 grid-rows-2 text-orange">
 
-          <h2 class="text-orange">
+          <h2 class="text-orange font-bold">
             {data.slug
               ? <a href={`job/`+data.slug}>{title}</a>
               : title
@@ -36,7 +36,7 @@ const CardHeader = ({ data }: CardHeaderProps) => {
 
         </header>
         :
-        <header class="text-blue">
+        <header class="text-blue font-bold">
           <h2>
             {data.slug
               ? <a href={'post/'+data.slug}>{title}</a>

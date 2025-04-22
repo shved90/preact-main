@@ -12,18 +12,20 @@ export default function Home() {
 
   useEffect(() => {
     (async () => {
-      const data = await gqlfetch(['latestPostsAndJobs', 'PageHeader'], {PageHeader: {variable: "home"}});
+      const data = await gqlfetch(['latestPostsAndJobs', 'PageHeader'], { PageHeader: { variable: "home" } });
       setPosts(data.latestPostsAndJobs.postCollection.items || []);
       setJobs(data.latestPostsAndJobs.jobCollection.items || []);
+
+      setHeader(data.PageHeader.pageHeaderCollection.items[0]);
       setLoading(false);
-      setHeader(data.PageHeader.pageHeaderCollection.items);
     })();
   }, []);
-  
 
   return (
     <main>
-      <PageHeader data={header} />
+      {header ?
+        <PageHeader data={header} />
+        : "loading"}
       <div class="h-full flex w-full justify-center items-center dark:bg-gray-800 p-2">
         {loading ? (
           <p>Loading...</p>

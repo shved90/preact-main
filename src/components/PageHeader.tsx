@@ -4,11 +4,11 @@ type PageHeaderProps = { data: PageHeaderType }
 
 
 const PageHeader = ({ data }: PageHeaderProps) => {
-
+console.log(data)
   return (
     <header>
-      <h1>{data[0].title}</h1>
-      <RichText richText={data[0].description.json} />
+      <h1>{data.title}</h1>
+      {data.description&&<RichText richText={data.description.json} />}
     </header>
   );
 }

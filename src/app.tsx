@@ -7,6 +7,7 @@ import "./app.css";
 const Home = lazy(() => import("./pages/home"));
 const Posts = lazy(() => import("./pages/posts"));
 const Post = lazy(() => import("./pages/post"));
+const Contact = lazy(() => import("./pages/contact"));
 
 
 export function App() {
@@ -20,6 +21,7 @@ export function App() {
               <Route path="/" component={Home} />
               <Route path="/posts" component={Posts} />
               <Route path="/post/:url" component={(props) => <Post url={props.path.split('/').pop() as string} />} />
+              <Route path="/contact" component={Contact} />
             </Router>
           </Layout>
         </ErrorBoundary>

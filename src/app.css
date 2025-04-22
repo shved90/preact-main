@@ -32,7 +32,9 @@
     --theme-color-background: hsl(0 0% 98%);
   }
  
-  .dark {
-    --color-orange: #fff;
-  }
+  /* .dark {
+    --color-dark-300: #c5c5c5;
+    --color-dark-500: #e0e0e0;
+    --color-dark-700: #ffffff;
+  } */
 }
