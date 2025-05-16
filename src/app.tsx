@@ -23,6 +23,7 @@ export function App() {
               <Route path="/post/:url" component={(props) => <Post url={props.path.split('/').pop() as string} />} />
               <Route path="/contact" component={Contact} />
               <Route default component={NotFound} />
+
             </Router>
           </Layout>
         </ErrorBoundary>
