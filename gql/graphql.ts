@@ -732,6 +732,7 @@ export enum EntryOrder {
 }
 
 export enum ImageFormat {
+  /** AVIF image format. */
   Avif = 'AVIF',
   /** JPG image format. */
   Jpg = 'JPG',
@@ -840,7 +841,6 @@ export type Job = Entry & _Node & {
   role?: Maybe<Scalars['String']['output']>;
   shortSummary?: Maybe<JobShortSummary>;
   slug?: Maybe<Scalars['String']['output']>;
-  socialsCollection?: Maybe<JobSocialsCollection>;
   startDate?: Maybe<Scalars['DateTime']['output']>;
   sys: Sys;
 };
@@ -897,17 +897,6 @@ export type JobShortSummaryArgs = {
 /** Places I worked at [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/job) */
 export type JobSlugArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** Places I worked at [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/job) */
-export type JobSocialsCollectionArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  locale?: InputMaybe<Scalars['String']['input']>;
-  order?: InputMaybe<Array<InputMaybe<JobSocialsCollectionOrder>>>;
-  preview?: InputMaybe<Scalars['Boolean']['input']>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<SocialLinkFilter>;
 };
 
 
@@ -1026,8 +1015,6 @@ export type JobFilter = {
   slug_not?: InputMaybe<Scalars['String']['input']>;
   slug_not_contains?: InputMaybe<Scalars['String']['input']>;
   slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  socials?: InputMaybe<CfSocialLinkNestedFilter>;
-  socialsCollection_exists?: InputMaybe<Scalars['Boolean']['input']>;
   startDate?: InputMaybe<Scalars['DateTime']['input']>;
   startDate_exists?: InputMaybe<Scalars['Boolean']['input']>;
   startDate_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -1125,29 +1112,6 @@ export type JobShortSummaryResourcesInline = ResourceLink & {
   __typename?: 'JobShortSummaryResourcesInline';
   sys: ResourceSys;
 };
-
-export type JobSocialsCollection = {
-  __typename?: 'JobSocialsCollection';
-  items: Array<Maybe<SocialLink>>;
-  limit: Scalars['Int']['output'];
-  skip: Scalars['Int']['output'];
-  total: Scalars['Int']['output'];
-};
-
-export enum JobSocialsCollectionOrder {
-  SocialAsc = 'social_ASC',
-  SocialDesc = 'social_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
-  UrlAsc = 'url_ASC',
-  UrlDesc = 'url_DESC'
-}
 
 /** top page blurb - title and description [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/pageHeader) */
 export type PageHeader = Entry & _Node & {
@@ -1524,8 +1488,6 @@ export type Query = {
   pageHeaderCollection?: Maybe<PageHeaderCollection>;
   post?: Maybe<Post>;
   postCollection?: Maybe<PostCollection>;
-  socialLink?: Maybe<SocialLink>;
-  socialLinkCollection?: Maybe<SocialLinkCollection>;
   webSkills?: Maybe<WebSkills>;
   webSkillsCollection?: Maybe<WebSkillsCollection>;
 };
@@ -1674,23 +1636,6 @@ export type QueryPostCollectionArgs = {
 };
 
 
-export type QuerySocialLinkArgs = {
-  id: Scalars['String']['input'];
-  locale?: InputMaybe<Scalars['String']['input']>;
-  preview?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-
-export type QuerySocialLinkCollectionArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  locale?: InputMaybe<Scalars['String']['input']>;
-  order?: InputMaybe<Array<InputMaybe<SocialLinkOrder>>>;
-  preview?: InputMaybe<Scalars['Boolean']['input']>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<SocialLinkFilter>;
-};
-
-
 export type QueryWebSkillsArgs = {
   id: Scalars['String']['input'];
   locale?: InputMaybe<Scalars['String']['input']>;
@@ -1716,127 +1661,6 @@ export type ResourceSys = {
   linkType: Scalars['String']['output'];
   urn: Scalars['String']['output'];
 };
-
-/** [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/socialLink) */
-export type SocialLink = Entry & _Node & {
-  __typename?: 'SocialLink';
-  _id: Scalars['ID']['output'];
-  contentfulMetadata: ContentfulMetadata;
-  linkedFrom?: Maybe<SocialLinkLinkingCollections>;
-  social?: Maybe<Scalars['String']['output']>;
-  sys: Sys;
-  url?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/socialLink) */
-export type SocialLinkLinkedFromArgs = {
-  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/socialLink) */
-export type SocialLinkSocialArgs = {
-  locale?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/socialLink) */
-export type SocialLinkUrlArgs = {
-  locale?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type SocialLinkCollection = {
-  __typename?: 'SocialLinkCollection';
-  items: Array<Maybe<SocialLink>>;
-  limit: Scalars['Int']['output'];
-  skip: Scalars['Int']['output'];
-  total: Scalars['Int']['output'];
-};
-
-export type SocialLinkFilter = {
-  AND?: InputMaybe<Array<InputMaybe<SocialLinkFilter>>>;
-  OR?: InputMaybe<Array<InputMaybe<SocialLinkFilter>>>;
-  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
-  social?: InputMaybe<Scalars['String']['input']>;
-  social_contains?: InputMaybe<Scalars['String']['input']>;
-  social_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  social_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  social_not?: InputMaybe<Scalars['String']['input']>;
-  social_not_contains?: InputMaybe<Scalars['String']['input']>;
-  social_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  sys?: InputMaybe<SysFilter>;
-  url?: InputMaybe<Scalars['String']['input']>;
-  url_contains?: InputMaybe<Scalars['String']['input']>;
-  url_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  url_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  url_not?: InputMaybe<Scalars['String']['input']>;
-  url_not_contains?: InputMaybe<Scalars['String']['input']>;
-  url_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type SocialLinkLinkingCollections = {
-  __typename?: 'SocialLinkLinkingCollections';
-  entryCollection?: Maybe<EntryCollection>;
-  jobCollection?: Maybe<JobCollection>;
-};
-
-
-export type SocialLinkLinkingCollectionsEntryCollectionArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  locale?: InputMaybe<Scalars['String']['input']>;
-  preview?: InputMaybe<Scalars['Boolean']['input']>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-export type SocialLinkLinkingCollectionsJobCollectionArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  locale?: InputMaybe<Scalars['String']['input']>;
-  order?: InputMaybe<Array<InputMaybe<SocialLinkLinkingCollectionsJobCollectionOrder>>>;
-  preview?: InputMaybe<Scalars['Boolean']['input']>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export enum SocialLinkLinkingCollectionsJobCollectionOrder {
-  CompanyNameAsc = 'companyName_ASC',
-  CompanyNameDesc = 'companyName_DESC',
-  CompanyUrlAsc = 'companyUrl_ASC',
-  CompanyUrlDesc = 'companyUrl_DESC',
-  EndDateAsc = 'endDate_ASC',
-  EndDateDesc = 'endDate_DESC',
-  LocationAsc = 'location_ASC',
-  LocationDesc = 'location_DESC',
-  RoleAsc = 'role_ASC',
-  RoleDesc = 'role_DESC',
-  SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC',
-  StartDateAsc = 'startDate_ASC',
-  StartDateDesc = 'startDate_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
-
-export enum SocialLinkOrder {
-  SocialAsc = 'social_ASC',
-  SocialDesc = 'social_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
-  UrlAsc = 'url_ASC',
-  UrlDesc = 'url_DESC'
-}
 
 export type Sys = {
   __typename?: 'Sys';
@@ -2035,25 +1859,4 @@ export enum WebSkillsOrder {
 
 export type _Node = {
   _id: Scalars['ID']['output'];
-};
-
-export type CfSocialLinkNestedFilter = {
-  AND?: InputMaybe<Array<InputMaybe<CfSocialLinkNestedFilter>>>;
-  OR?: InputMaybe<Array<InputMaybe<CfSocialLinkNestedFilter>>>;
-  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
-  social?: InputMaybe<Scalars['String']['input']>;
-  social_contains?: InputMaybe<Scalars['String']['input']>;
-  social_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  social_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  social_not?: InputMaybe<Scalars['String']['input']>;
-  social_not_contains?: InputMaybe<Scalars['String']['input']>;
-  social_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  sys?: InputMaybe<SysFilter>;
-  url?: InputMaybe<Scalars['String']['input']>;
-  url_contains?: InputMaybe<Scalars['String']['input']>;
-  url_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  url_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  url_not?: InputMaybe<Scalars['String']['input']>;
-  url_not_contains?: InputMaybe<Scalars['String']['input']>;
-  url_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };

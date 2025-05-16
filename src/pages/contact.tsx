@@ -5,7 +5,8 @@ export default function Contact() {
 
 
   return (
-    <form name="contact" method="POST" data-netlify="true" action="/pages/success">
+    //@ts-ignore test
+    <form name="contact" method="POST" data-netlify="true" netlify action="/pages/success">
       <p>
         <label>Your Name: <input type="text" name="name" /></label>
       </p>

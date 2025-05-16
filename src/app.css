@@ -1,10 +1,12 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+
+
 @theme {
 
   --color-red: #f73148;
-  --color-green: #68ba6b;
+  --color-green: rgb(76, 166, 79);
   --color-blue: #48a2dd;
   --color-orange: #ffa62d;
   --color-purple: #a274d3;
@@ -18,20 +20,21 @@
 
 }
 
+
+
 @layer base {
-  body{
+  body {
     background: var(--color-dark-700);
     background: red;
     color: var(--color-light-500);
   }
-  .activeNavLink{
-    background: var(--color-dark-300) !important;
-  }
+
+
   .light {
     --theme-color-foreground: hsl(0 0% 8%);
     --theme-color-background: hsl(0 0% 98%);
   }
- 
+
   /* .dark {
     --color-dark-300: #c5c5c5;
     --color-dark-500: #e0e0e0;

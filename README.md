@@ -25,9 +25,7 @@ This is very much WIP atm, here's a list of things I want to add in no particula
 Buildup components, currently only basics are in, missing data block, working header, forms, icons, tags etc.
 
 * #### Nav 
-    * mobile responsiveness and collapsing func, design
-    * desktop responsiveness and sticky func, design
-    * recheck xl-desktop func, fix responsive width etc.
+    * mobile and desktop sticky nav
 * #### Layout
     * Still a rough mockup, clean and finalize, rework transition logic
     * Update classes responsible for transitioning, make it smooth
@@ -57,10 +55,10 @@ Buildup components, currently only basics are in, missing data block, working he
 * Chew through netlify forms docs for form functionality
 
 ### Misc
+* [vite-ssg](https://www.npmjs.com/package/vite-ssg) to work without js properly for preact
 * Add loading states to each component on both component and page views
 * Normalize file and func naming
 * Consider prettify
-* Fix graphql codegen clash with vite .env management
 * Add SVG icons throughout, either as in old vue version or something else, maybe spritesheet
 * Manage page-by-page color schemes
 * Consider Tailwind theming to fully work with light/dark. Either add a whole bunch of classes for each theme in every component which sounds _insane_, or rewrite the way colors are managed, might require restyling a whole bunch of stuff. Here's a basic [tut](https://www.devgem.io/posts/mastering-tailwind-css-v4-implementing-dynamic-light-and-dark-themes-effortlessly)

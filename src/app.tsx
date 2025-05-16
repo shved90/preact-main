@@ -8,7 +8,7 @@ const Home = lazy(() => import("./pages/home"));
 const Posts = lazy(() => import("./pages/posts"));
 const Post = lazy(() => import("./pages/post"));
 const Contact = lazy(() => import("./pages/contact"));
-
+const NotFound = lazy(() => import('./pages/404'));
 
 export function App() {
   const [enableTransitions, setEnableTransitions] = useState(true);
@@ -22,6 +22,7 @@ export function App() {
               <Route path="/posts" component={Posts} />
               <Route path="/post/:url" component={(props) => <Post url={props.path.split('/').pop() as string} />} />
               <Route path="/contact" component={Contact} />
+              <Route default component={NotFound} />
             </Router>
           </Layout>
         </ErrorBoundary>

@@ -51,7 +51,7 @@ const queryMap: Record<QueryKey, string> = {
 
   latestPostsAndJobs: `
     query getLatestPostsAndJobs {
-      postCollection(limit: 4, order: sys_publishedAt_DESC) {
+      postCollection(limit: 4, order: date_DESC) {
         items {
         __typename
           title
@@ -65,15 +65,9 @@ const queryMap: Record<QueryKey, string> = {
           }
         }
       }
-      jobCollection(limit: 4, order: sys_publishedAt_DESC) {
+      jobCollection(limit: 4, order: startDate_DESC) {
     items{
     __typename
-      socialsCollection{
-        items{
-          social
-          url
-        }
-      }
       endDate
       startDate
       companyUrl
@@ -94,7 +88,7 @@ const queryMap: Record<QueryKey, string> = {
 }
 
 type QueryVariablesMap = {
-  PageHeader: {variable: string};
+  PageHeader: { variable: string };
   posts: undefined;
   latestPostsAndJobs: undefined;
   post: { variable: string };
@@ -134,6 +128,7 @@ export async function gqlfetch<K extends QueryKey>(
 
       const { data } = await res.json();
       results[key] = data;
+      console.log(data)
     } catch (err) {
       console.error(`Error fetching ${key}:`, err);
     }
