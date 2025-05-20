@@ -5,8 +5,7 @@ export default function Contact() {
 
 
   return (
-    //@ts-ignore test
-    <form name="contact" method="POST" data-netlify="true" netlify>
+    <form name="contact" method="POST">
       <p>
         <label>Your Name: <input type="text" name="name" /></label>
       </p>
@@ -14,7 +13,7 @@ export default function Contact() {
         <label>Your Email: <input type="email" name="email" /></label>
       </p>
       <p>
-        <label>Your Role: <select name="role[]" multiple>
+        <label>Your Role: <select name="role" multiple>
           <option value="leader">Leader</option>
           <option value="follower">Follower</option>
         </select></label>
