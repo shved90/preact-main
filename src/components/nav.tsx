@@ -42,8 +42,8 @@ const SideNav = () => {
     }, [path])
 
     const mobile = `grid divide-y-2 bg-dark-500 divide-dark-300 border-solid border-r-2 border-dark-300 grid-cols-2`
-    const desktop = `md:grid-flow-col md:grid-rows-1 md:grid-cols-${navLinks.length} min-h-full`
-    const extraWide = `2xl:grid-flow-row 2xl:fixed 2xl:left-0 2xl:h-screen 2xl:w-[25%] 2xl:grid-cols-1 2xl:grid-rows-${navLinks.length}`
+    const desktop = `md:grid-flow-col md:grid-rows-1 md:grid-cols-4 min-h-full`
+    const extraWide = `2xl:grid-flow-row 2xl:fixed 2xl:left-0 2xl:h-screen 2xl:w-[25%] 2xl:grid-cols-1 2xl:grid-rows-4`
     const navLinkStyles = {
         mobile: `text-white h-full w-full flex text-center justify-center items-center`,
         desktop: `min-h-20`,

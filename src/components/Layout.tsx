@@ -6,7 +6,7 @@ interface LayoutProps {
   enableTransitions: boolean;
   toggleTransitions: () => void;
 }
-//@ts-ignore
+
 const Layout = ({ children, enableTransitions, toggleTransitions }: LayoutProps) => {
 
   const mobile = {
