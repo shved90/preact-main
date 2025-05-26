@@ -1,4 +1,4 @@
-type QueryKey = 'PageHeader' | 'posts' | 'post' | 'latestPostsAndJobs';
+type QueryKey = 'PageHeader' | 'BlogPost' | 'Blog' | 'latestBlogsAndJobs';
 
 const queryMap: Record<QueryKey, string> = {
 
@@ -6,6 +6,7 @@ const queryMap: Record<QueryKey, string> = {
     query getPageHeaders ($variable: String!) {
       pageHeaderCollection (where: {pageName: $variable}){
         items{
+          __typename
           title
           pageName
           description{
@@ -14,74 +15,94 @@ const queryMap: Record<QueryKey, string> = {
         }
       }
     }
-    `,
+  `,
 
-  posts: `
-    query getAllPosts {
-      postCollection{
-      items{
-        title
-        slug
-        date
-        coverImage{
-          url
+  Blog: `
+    query getAllBlogPosts {
+      blogCollection{
+        items{
+          __typename
+          title
+          slug
+          content {
+            json
+          }
+          sys {
+            publishedAt
+            firstPublishedAt
+          }
+          contentfulMetadata{
+            tags{
+              name
+            }
+          }
         }
       }
-      }
     }
-    `,
+  `,
 
-  post: `
-    query getPostBySlug ($variable: String!) {
-        postCollection (where: {slug: $variable}){
+  BlogPost: `
+    query getBlogBySlug ($variable: String!) {
+        blogCollection (where: {slug: $variable}){
           items{
+            __typename
             title
             slug
             content {
               json
             }
-            
-            coverImage{
-              url
+            sys {
+              publishedAt
+              firstPublishedAt
+            }
+            contentfulMetadata{
+              tags{
+                name
+              }
             }
           }
         }
       }
-    `,
+  `,
 
-  latestPostsAndJobs: `
-    query getLatestPostsAndJobs {
-      postCollection(limit: 4, order: date_DESC) {
+  latestBlogsAndJobs: `
+    query getLatestBlogsAndJobs {
+      blogCollection(limit: 4, order:  sys_firstPublishedAt_DESC) {
         items {
-        __typename
+          __typename
           title
           slug
-          date
           content {
-              json
+            json
+          }
+          sys {
+            publishedAt
+            firstPublishedAt
+          }
+          contentfulMetadata{
+            tags{
+              name
             }
-          coverImage {
-            url
           }
         }
       }
       jobCollection(limit: 4, order: startDate_DESC) {
-    items{
-    __typename
-      endDate
-      startDate
-      companyUrl
-      companyName
-      slug
-      role
-      location
-      shortSummary{
-        json
-      }
-      description{
-       json
-      }
-    }
+        items{
+          __typename
+          endDate
+          startDate
+          companyUrl
+          companyName
+          slug
+          role
+          location
+          shortSummary{
+            json
+          }
+          description{
+            json
+          }
+        }
       }
     }
   `,
@@ -89,9 +110,9 @@ const queryMap: Record<QueryKey, string> = {
 
 type QueryVariablesMap = {
   PageHeader: { variable: string };
-  posts: undefined;
-  latestPostsAndJobs: undefined;
-  post: { variable: string };
+  Blog: undefined;
+  latestBlogsAndJobs: undefined;
+  BlogPost: { variable: string };
 };
 
 type MaybeArray<T> = T | T[];

@@ -537,6 +537,7 @@ export type Blog = Entry & _Node & {
   content?: Maybe<BlogContent>;
   contentfulMetadata: ContentfulMetadata;
   linkedFrom?: Maybe<BlogLinkingCollections>;
+  slug?: Maybe<Scalars['String']['output']>;
   sys: Sys;
   title?: Maybe<Scalars['String']['output']>;
 };
@@ -551,6 +552,12 @@ export type BlogContentArgs = {
 /** basic blog variant [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/blog) */
 export type BlogLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** basic blog variant [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/blog) */
+export type BlogSlugArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
 };
 
 
@@ -622,6 +629,13 @@ export type BlogFilter = {
   content_exists?: InputMaybe<Scalars['Boolean']['input']>;
   content_not_contains?: InputMaybe<Scalars['String']['input']>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  slug_contains?: InputMaybe<Scalars['String']['input']>;
+  slug_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  slug_not?: InputMaybe<Scalars['String']['input']>;
+  slug_not_contains?: InputMaybe<Scalars['String']['input']>;
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sys?: InputMaybe<SysFilter>;
   title?: InputMaybe<Scalars['String']['input']>;
   title_contains?: InputMaybe<Scalars['String']['input']>;
@@ -646,6 +660,8 @@ export type BlogLinkingCollectionsEntryCollectionArgs = {
 };
 
 export enum BlogOrder {
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',

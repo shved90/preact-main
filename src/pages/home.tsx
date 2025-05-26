@@ -1,20 +1,20 @@
 import { useEffect, useState } from "preact/hooks";
 import { gqlfetch } from "../utils/data";
-import { Post, Job, PageHeader as PageHeaderType } from "../../gql/graphql";
+import { Job, Blog, PageHeader as PageHeaderType } from "../../gql/graphql";
 import { PreviewCard } from "../components/PreviewCard";
 import { PageHeader } from "../components/PageHeader";
 
 export default function Home() {
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [blog, setBlog] = useState<Blog[]>([]);
   const [jobs, setJobs] = useState<Job[]>([]);
   const [header, setHeader] = useState<PageHeaderType>();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
-      const data = await gqlfetch(['latestPostsAndJobs', 'PageHeader'], { PageHeader: { variable: "home" } });
-      setPosts(data.latestPostsAndJobs.postCollection.items || []);
-      setJobs(data.latestPostsAndJobs.jobCollection.items || []);
+      const data = await gqlfetch(['latestBlogsAndJobs', 'PageHeader'], { PageHeader: { variable: "home" } });
+      setBlog(data.latestBlogsAndJobs.blogCollection.items || []);
+      setJobs(data.latestBlogsAndJobs.jobCollection.items || []);
 
       setHeader(data.PageHeader.pageHeaderCollection.items[0]);
       setLoading(false);
@@ -37,8 +37,8 @@ export default function Home() {
               ))}
             </section>
             <section class="grid-col-1 grid gap-5 content-start">
-              {posts.map((post) => (
-                <PreviewCard data={post} />
+              {blog.map((blogPost) => (
+                <PreviewCard data={blogPost} />
               ))}
             </section>
           </div>

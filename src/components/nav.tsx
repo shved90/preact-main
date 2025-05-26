@@ -27,7 +27,7 @@ const SideNav = () => {
 
     const [navLinks, setNavLinks] = useState([
         { href: '/', label: 'Home', color: linkColors.green, isActive: true },
-        { href: '/posts', label: 'Blog', color: linkColors.orange, isActive: false },
+        { href: '/blog', label: 'Blog', color: linkColors.orange, isActive: false },
         { href: '/resume', label: 'Resume', color: linkColors.blue, isActive: false },
         { href: '/contact', label: 'Contact', color: linkColors.purple, isActive: false },
     ])
@@ -49,6 +49,7 @@ const SideNav = () => {
         desktop: `min-h-20`,
         extraWide: ``
     }
+    
     return (
         <nav ref={nav} id="mainNav" class={`${mobile} ${desktop} ${extraWide}`}>
             {navLinks.map(({ href, label, color, isActive }) => (

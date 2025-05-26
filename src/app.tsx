@@ -5,8 +5,8 @@ import "./app.css";
 
 // Lazy load pages for better performance
 const Home = lazy(() => import("./pages/home"));
-const Posts = lazy(() => import("./pages/posts"));
-const Post = lazy(() => import("./pages/post"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogPost = lazy(() => import("./pages/BlogPost.tsx"));
 const Contact = lazy(() => import("./pages/contact"));
 const NotFound = lazy(() => import('./pages/404'));
 
@@ -19,8 +19,8 @@ export function App() {
           <Layout enableTransitions={enableTransitions} toggleTransitions={() => setEnableTransitions((prev) => !prev)}>
             <Router>
               <Route path="/" component={Home} />
-              <Route path="/posts" component={Posts} />
-              <Route path="/post/:url" component={(props) => <Post url={props.path.split('/').pop() as string} />} />
+              <Route path="/blog" component={Blog} />
+              <Route path="/blog/:url" component={(props) => <BlogPost url={props.path.split('/').pop() as string} />} />
               <Route path="/contact" component={Contact} />
               <Route default component={NotFound} />
 
