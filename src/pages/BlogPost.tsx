@@ -4,16 +4,21 @@ import { Blog } from '../../gql/graphql';
 import RichText from '@madebyconnor/rich-text-to-jsx'
 import { INLINES } from '@contentful/rich-text-types';
 import { Hyperlink } from '../components/RichTextElems/Hyperlink';
+import { ThemeColors } from '../utils/ThemeColor';
 
-export default function BlogPost(props: { url: string }) {
-  console.log(props.url)
+interface BlogPostProps {
+  url: string
+  pageColor: typeof ThemeColors[keyof typeof ThemeColors];
+}
+
+export default function BlogPost({ url, pageColor }: BlogPostProps) {
 
   const [BlogPost, setBlogPost] = useState<Blog>();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchBlogPost() {
-      const data = await gqlfetch(['BlogPost'], { BlogPost: { variable: props.url } });
+      const data = await gqlfetch(['BlogPost'], { BlogPost: { variable: url } });
       setBlogPost(data.BlogPost.blogCollection.items[0]);
       setLoading(false);
     }
@@ -25,14 +30,14 @@ export default function BlogPost(props: { url: string }) {
 
   return (
     <div>
-      <h1>{BlogPost.title}</h1>
+      <h1 class={pageColor.text}>{BlogPost.title}</h1>
       <RichText
         richText={BlogPost.content?.json}
         overrides={{
           [INLINES.HYPERLINK]: {
             component: Hyperlink,
             props: {
-              class: 'text-blue'
+              class: pageColor.link
             }
           }
         }}

@@ -11,18 +11,18 @@ interface BlogPostsProps {
 
 export default function BlogPosts({pageColor}: BlogPostsProps) {
 
-  const [Blog, setBlog] = useState<Blog[]>([]);
+  const [JobList, setJobList] = useState<Blog[]>([]);
   const [header, setHeader] = useState<PageHeaderType>();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchBlogPosts() {
-      const data = await gqlfetch(['Blog', 'PageHeader'], { PageHeader: { variable: "blog" } });
-      setBlog(data.Blog.blogCollection.items);
+    async function fetchJobList() {
+      const data = await gqlfetch(['JobList', 'PageHeader'], { PageHeader: { variable: "resume" } });
+      setJobList(data.JobList.jobCollection.items);
       setHeader(data.PageHeader.pageHeaderCollection.items[0]);
       setLoading(false);
     }
-    fetchBlogPosts();
+    fetchJobList();
   }, []);
 
 
@@ -32,8 +32,8 @@ export default function BlogPosts({pageColor}: BlogPostsProps) {
         <PageHeader data={header} headerColor={pageColor} />
         : "loading"}
       {loading ? <p>Loading...</p> : (
-        Blog.map(BlogPost => (
-          <PreviewCard data={BlogPost} color={pageColor} />
+        JobList.map(Job => (
+          <PreviewCard data={Job} color={pageColor} />
         ))
       )}
     </>

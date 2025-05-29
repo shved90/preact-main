@@ -43,10 +43,9 @@ Buildup components, currently only basics are in, missing data block, working he
 ### Pages
 * Abstract and simplify data fetching more
 * Thoroughly test richtext package with CMS data types across the board to make sure it works long-term
-* Fix richtext package typescript error
-* Replace posts prototype garbage with relevant data, move to blog data type
 * Build up pages for the rest of planned data
 * Add proper metadata and card preview to individual blog posts
+* Replace hacky blog page navigation with [preact-iso nested routing](https://preactjs.com/guide/v10/preact-iso/#nested-routing)
 
 ### Contact
 * Build contact form basics
@@ -57,7 +56,6 @@ Buildup components, currently only basics are in, missing data block, working he
 ### Misc
 * [vite-ssg](https://www.npmjs.com/package/vite-ssg) to work without js properly for preact
 * Add loading states to each component on both component and page views
-* Normalize file and func naming
 * Consider prettify
 * Add SVG icons throughout, either as in old vue version or something else, maybe spritesheet
 * Manage page-by-page color schemes
@@ -73,3 +71,4 @@ Settings widget to configure website for the user, save in localstorage, give su
 * theme changing
 * font resize
 * enable/disable animation
+* reading mode for longer blog posts

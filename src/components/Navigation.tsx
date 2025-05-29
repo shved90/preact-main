@@ -1,42 +1,24 @@
 import { useLocation } from 'preact-iso'
 import { useRef, useEffect, useState } from 'preact/hooks'
+import { ThemeColors } from '../utils/ThemeColor'
 
-const SideNav = () => {
+const Navigation = () => {
 
     const nav = useRef<HTMLElement | null>(null)
     const { path } = useLocation()
 
-    const linkColors = {
-        green: {
-            hover: 'hover:bg-green/30',
-            active: '!bg-green/50'
-        },
-        orange: {
-            hover: 'hover:bg-orange/30',
-            active: '!bg-orange/50'
-        },
-        blue: {
-            hover: 'hover:bg-blue/30',
-            active: '!bg-blue/50'
-        },
-        purple: {
-            hover: 'hover:bg-purple/30',
-            active: '!bg-purple/50'
-        }
-    }
-
     const [navLinks, setNavLinks] = useState([
-        { href: '/', label: 'Home', color: linkColors.green, isActive: true },
-        { href: '/blog', label: 'Blog', color: linkColors.orange, isActive: false },
-        { href: '/resume', label: 'Resume', color: linkColors.blue, isActive: false },
-        { href: '/contact', label: 'Contact', color: linkColors.purple, isActive: false },
+        { href: '/', label: 'Home', color: ThemeColors.green.background, isActive: true },
+        { href: '/blog', label: 'Blog', color: ThemeColors.blue.background, isActive: false },
+        { href: '/resume', label: 'Resume', color: ThemeColors.orange.background, isActive: false },
+        { href: '/contact', label: 'Contact', color: ThemeColors.purple.background, isActive: false },
     ])
 
     useEffect(() => {
         setNavLinks(prevLinks =>
             prevLinks.map(link => ({
                 ...link,
-                isActive: link.href === path,
+                isActive: link.href === path || path.startsWith(`${link.href}/`),
             }))
         )
     }, [path])
@@ -49,7 +31,7 @@ const SideNav = () => {
         desktop: `min-h-20`,
         extraWide: ``
     }
-    
+
     return (
         <nav ref={nav} id="mainNav" class={`${mobile} ${desktop} ${extraWide}`}>
             {navLinks.map(({ href, label, color, isActive }) => (
@@ -60,4 +42,4 @@ const SideNav = () => {
     )
 }
 
-export { SideNav }
+export { Navigation }

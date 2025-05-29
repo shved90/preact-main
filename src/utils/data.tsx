@@ -1,16 +1,26 @@
-type QueryKey = 'PageHeader' | 'BlogPost' | 'Blog' | 'latestBlogsAndJobs';
+type QueryKey = 'PageHeader' | 'BlogPost' | 'Blog' | 'JobList' | 'latestBlogsAndJobs';
 
 const queryMap: Record<QueryKey, string> = {
 
   PageHeader: `
     query getPageHeaders ($variable: String!) {
-      pageHeaderCollection (where: {pageName: $variable}){
+      pageHeaderCollection (where: {pageName: $variable}, limit: 1){
         items{
           __typename
           title
           pageName
           description{
             json
+            links {
+              assets {
+                hyperlink {
+                  sys {
+                    id
+                  }
+                  url
+                }
+              }
+            }
           }
         }
       }
@@ -65,6 +75,29 @@ const queryMap: Record<QueryKey, string> = {
       }
   `,
 
+  JobList: `
+    query getJobList {
+      jobCollection(order: startDate_DESC) {
+        items{
+          __typename
+          endDate
+          startDate
+          companyUrl
+          companyName
+          slug
+          role
+          location
+          shortSummary{
+            json
+          }
+          description{
+            json
+          }
+        }
+      }
+    }
+  `,
+
   latestBlogsAndJobs: `
     query getLatestBlogsAndJobs {
       blogCollection(limit: 4, order:  sys_firstPublishedAt_DESC) {
@@ -111,6 +144,7 @@ const queryMap: Record<QueryKey, string> = {
 type QueryVariablesMap = {
   PageHeader: { variable: string };
   Blog: undefined;
+  JobList: undefined;
   latestBlogsAndJobs: undefined;
   BlogPost: { variable: string };
 };
@@ -149,7 +183,6 @@ export async function gqlfetch<K extends QueryKey>(
 
       const { data } = await res.json();
       results[key] = data;
-      console.log(data)
     } catch (err) {
       console.error(`Error fetching ${key}:`, err);
     }
