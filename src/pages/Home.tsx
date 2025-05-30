@@ -27,10 +27,11 @@ export default function Home({ pageColor }: HomeProps) {
 
   return (
     <main>
-      {header ?
-        <PageHeader data={header} headerColor={pageColor} />
+      {header?.title ?
+        <PageHeader title={header.title} content={header.description?.json} headerColor={pageColor} />
         : "loading"}
-      <div class="h-full flex w-full justify-center items-center dark:bg-gray-800">
+
+      <div class="h-full flex w-full justify-center items-center dark:bg-gray-800 mt-8">
         {loading ? (
           <p>Loading...</p>
         ) : (

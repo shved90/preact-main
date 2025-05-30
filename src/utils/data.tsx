@@ -34,7 +34,7 @@ const queryMap: Record<QueryKey, string> = {
           __typename
           title
           slug
-          content {
+          summary {
             json
           }
           sys {
@@ -93,6 +93,11 @@ const queryMap: Record<QueryKey, string> = {
           description{
             json
           }
+          contentfulMetadata{
+            tags{
+              name
+            }
+          }
         }
       }
     }
@@ -105,7 +110,7 @@ const queryMap: Record<QueryKey, string> = {
           __typename
           title
           slug
-          content {
+          summary {
             json
           }
           sys {
@@ -134,6 +139,11 @@ const queryMap: Record<QueryKey, string> = {
           }
           description{
             json
+          }
+          contentfulMetadata{
+            tags{
+              name
+            }
           }
         }
       }

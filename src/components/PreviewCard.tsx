@@ -4,6 +4,7 @@ import { CardHeader } from './CardHeader';
 import { INLINES } from '@contentful/rich-text-types';
 import { Hyperlink } from './RichTextElems/Hyperlink';
 import { ThemeColors } from '../utils/ThemeColor';
+import { Tags } from './Tags';
 
 type PreviewCardProps = {
   data: Blog | Job
@@ -12,7 +13,12 @@ type PreviewCardProps = {
 
 const PreviewCard = ({ data, color }: PreviewCardProps) => {
 
-  const content = (data as Blog).content?.json || (data as Job).shortSummary?.json
+  const content = 'summary' in data
+  ? data.summary?.json
+  : 'shortSummary' in data
+    ? data.shortSummary?.json
+    : null;
+
 
   return (
     <article class="border-1 border-dark-300 bg-dark-500 p-5">
@@ -28,6 +34,7 @@ const PreviewCard = ({ data, color }: PreviewCardProps) => {
             }
           }}
         />
+        {data.contentfulMetadata.tags.length ? <Tags data={data.contentfulMetadata} tagColor={color} /> : null}
       </div>
     </article>
   );

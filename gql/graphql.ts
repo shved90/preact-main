@@ -384,7 +384,6 @@ export type AssetLinkingCollections = {
   adventureCollection?: Maybe<AdventureCollection>;
   authorCollection?: Maybe<AuthorCollection>;
   entryCollection?: Maybe<EntryCollection>;
-  postCollection?: Maybe<PostCollection>;
   webSkillsCollection?: Maybe<WebSkillsCollection>;
 };
 
@@ -406,14 +405,6 @@ export type AssetLinkingCollectionsAuthorCollectionArgs = {
 
 
 export type AssetLinkingCollectionsEntryCollectionArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  locale?: InputMaybe<Scalars['String']['input']>;
-  preview?: InputMaybe<Scalars['Boolean']['input']>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-};
-
-
-export type AssetLinkingCollectionsPostCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']['input']>;
   locale?: InputMaybe<Scalars['String']['input']>;
   preview?: InputMaybe<Scalars['Boolean']['input']>;
@@ -538,6 +529,7 @@ export type Blog = Entry & _Node & {
   contentfulMetadata: ContentfulMetadata;
   linkedFrom?: Maybe<BlogLinkingCollections>;
   slug?: Maybe<Scalars['String']['output']>;
+  summary?: Maybe<BlogSummary>;
   sys: Sys;
   title?: Maybe<Scalars['String']['output']>;
 };
@@ -557,6 +549,12 @@ export type BlogLinkedFromArgs = {
 
 /** basic blog variant [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/blog) */
 export type BlogSlugArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** basic blog variant [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/blog) */
+export type BlogSummaryArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -636,6 +634,9 @@ export type BlogFilter = {
   slug_not?: InputMaybe<Scalars['String']['input']>;
   slug_not_contains?: InputMaybe<Scalars['String']['input']>;
   slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  summary_contains?: InputMaybe<Scalars['String']['input']>;
+  summary_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  summary_not_contains?: InputMaybe<Scalars['String']['input']>;
   sys?: InputMaybe<SysFilter>;
   title?: InputMaybe<Scalars['String']['input']>;
   title_contains?: InputMaybe<Scalars['String']['input']>;
@@ -673,6 +674,54 @@ export enum BlogOrder {
   TitleAsc = 'title_ASC',
   TitleDesc = 'title_DESC'
 }
+
+export type BlogSummary = {
+  __typename?: 'BlogSummary';
+  json: Scalars['JSON']['output'];
+  links: BlogSummaryLinks;
+};
+
+export type BlogSummaryAssets = {
+  __typename?: 'BlogSummaryAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type BlogSummaryEntries = {
+  __typename?: 'BlogSummaryEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type BlogSummaryLinks = {
+  __typename?: 'BlogSummaryLinks';
+  assets: BlogSummaryAssets;
+  entries: BlogSummaryEntries;
+  resources: BlogSummaryResources;
+};
+
+export type BlogSummaryResources = {
+  __typename?: 'BlogSummaryResources';
+  block: Array<BlogSummaryResourcesBlock>;
+  hyperlink: Array<BlogSummaryResourcesHyperlink>;
+  inline: Array<BlogSummaryResourcesInline>;
+};
+
+export type BlogSummaryResourcesBlock = ResourceLink & {
+  __typename?: 'BlogSummaryResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type BlogSummaryResourcesHyperlink = ResourceLink & {
+  __typename?: 'BlogSummaryResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type BlogSummaryResourcesInline = ResourceLink & {
+  __typename?: 'BlogSummaryResourcesInline';
+  sys: ResourceSys;
+};
 
 export type ContentfulMetadata = {
   __typename?: 'ContentfulMetadata';
@@ -1273,218 +1322,6 @@ export enum PageHeaderOrder {
   TitleDesc = 'title_DESC'
 }
 
-/** [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/post) */
-export type Post = Entry & _Node & {
-  __typename?: 'Post';
-  _id: Scalars['ID']['output'];
-  author?: Maybe<Entry>;
-  blargh?: Maybe<Scalars['Int']['output']>;
-  content?: Maybe<PostContent>;
-  contentfulMetadata: ContentfulMetadata;
-  coverImage?: Maybe<Asset>;
-  date?: Maybe<Scalars['DateTime']['output']>;
-  excerpt?: Maybe<Scalars['String']['output']>;
-  linkedFrom?: Maybe<PostLinkingCollections>;
-  slug?: Maybe<Scalars['String']['output']>;
-  sys: Sys;
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/post) */
-export type PostAuthorArgs = {
-  locale?: InputMaybe<Scalars['String']['input']>;
-  preview?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/post) */
-export type PostBlarghArgs = {
-  locale?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/post) */
-export type PostContentArgs = {
-  locale?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/post) */
-export type PostCoverImageArgs = {
-  locale?: InputMaybe<Scalars['String']['input']>;
-  preview?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/post) */
-export type PostDateArgs = {
-  locale?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/post) */
-export type PostExcerptArgs = {
-  locale?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/post) */
-export type PostLinkedFromArgs = {
-  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/post) */
-export type PostSlugArgs = {
-  locale?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/post) */
-export type PostTitleArgs = {
-  locale?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type PostCollection = {
-  __typename?: 'PostCollection';
-  items: Array<Maybe<Post>>;
-  limit: Scalars['Int']['output'];
-  skip: Scalars['Int']['output'];
-  total: Scalars['Int']['output'];
-};
-
-export type PostContent = {
-  __typename?: 'PostContent';
-  json: Scalars['JSON']['output'];
-  links: PostContentLinks;
-};
-
-export type PostContentAssets = {
-  __typename?: 'PostContentAssets';
-  block: Array<Maybe<Asset>>;
-  hyperlink: Array<Maybe<Asset>>;
-};
-
-export type PostContentEntries = {
-  __typename?: 'PostContentEntries';
-  block: Array<Maybe<Entry>>;
-  hyperlink: Array<Maybe<Entry>>;
-  inline: Array<Maybe<Entry>>;
-};
-
-export type PostContentLinks = {
-  __typename?: 'PostContentLinks';
-  assets: PostContentAssets;
-  entries: PostContentEntries;
-  resources: PostContentResources;
-};
-
-export type PostContentResources = {
-  __typename?: 'PostContentResources';
-  block: Array<PostContentResourcesBlock>;
-  hyperlink: Array<PostContentResourcesHyperlink>;
-  inline: Array<PostContentResourcesInline>;
-};
-
-export type PostContentResourcesBlock = ResourceLink & {
-  __typename?: 'PostContentResourcesBlock';
-  sys: ResourceSys;
-};
-
-export type PostContentResourcesHyperlink = ResourceLink & {
-  __typename?: 'PostContentResourcesHyperlink';
-  sys: ResourceSys;
-};
-
-export type PostContentResourcesInline = ResourceLink & {
-  __typename?: 'PostContentResourcesInline';
-  sys: ResourceSys;
-};
-
-export type PostFilter = {
-  AND?: InputMaybe<Array<InputMaybe<PostFilter>>>;
-  OR?: InputMaybe<Array<InputMaybe<PostFilter>>>;
-  author_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  blargh?: InputMaybe<Scalars['Int']['input']>;
-  blargh_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  blargh_gt?: InputMaybe<Scalars['Int']['input']>;
-  blargh_gte?: InputMaybe<Scalars['Int']['input']>;
-  blargh_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  blargh_lt?: InputMaybe<Scalars['Int']['input']>;
-  blargh_lte?: InputMaybe<Scalars['Int']['input']>;
-  blargh_not?: InputMaybe<Scalars['Int']['input']>;
-  blargh_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  content_contains?: InputMaybe<Scalars['String']['input']>;
-  content_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  content_not_contains?: InputMaybe<Scalars['String']['input']>;
-  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
-  coverImage_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  date?: InputMaybe<Scalars['DateTime']['input']>;
-  date_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  date_gt?: InputMaybe<Scalars['DateTime']['input']>;
-  date_gte?: InputMaybe<Scalars['DateTime']['input']>;
-  date_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
-  date_lt?: InputMaybe<Scalars['DateTime']['input']>;
-  date_lte?: InputMaybe<Scalars['DateTime']['input']>;
-  date_not?: InputMaybe<Scalars['DateTime']['input']>;
-  date_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
-  excerpt?: InputMaybe<Scalars['String']['input']>;
-  excerpt_contains?: InputMaybe<Scalars['String']['input']>;
-  excerpt_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  excerpt_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  excerpt_not?: InputMaybe<Scalars['String']['input']>;
-  excerpt_not_contains?: InputMaybe<Scalars['String']['input']>;
-  excerpt_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  slug?: InputMaybe<Scalars['String']['input']>;
-  slug_contains?: InputMaybe<Scalars['String']['input']>;
-  slug_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  slug_not?: InputMaybe<Scalars['String']['input']>;
-  slug_not_contains?: InputMaybe<Scalars['String']['input']>;
-  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  sys?: InputMaybe<SysFilter>;
-  title?: InputMaybe<Scalars['String']['input']>;
-  title_contains?: InputMaybe<Scalars['String']['input']>;
-  title_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  title_not?: InputMaybe<Scalars['String']['input']>;
-  title_not_contains?: InputMaybe<Scalars['String']['input']>;
-  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-};
-
-export type PostLinkingCollections = {
-  __typename?: 'PostLinkingCollections';
-  entryCollection?: Maybe<EntryCollection>;
-};
-
-
-export type PostLinkingCollectionsEntryCollectionArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  locale?: InputMaybe<Scalars['String']['input']>;
-  preview?: InputMaybe<Scalars['Boolean']['input']>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export enum PostOrder {
-  BlarghAsc = 'blargh_ASC',
-  BlarghDesc = 'blargh_DESC',
-  DateAsc = 'date_ASC',
-  DateDesc = 'date_DESC',
-  SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC'
-}
-
 export type Query = {
   __typename?: 'Query';
   _node?: Maybe<_Node>;
@@ -1502,8 +1339,6 @@ export type Query = {
   jobCollection?: Maybe<JobCollection>;
   pageHeader?: Maybe<PageHeader>;
   pageHeaderCollection?: Maybe<PageHeaderCollection>;
-  post?: Maybe<Post>;
-  postCollection?: Maybe<PostCollection>;
   webSkills?: Maybe<WebSkills>;
   webSkillsCollection?: Maybe<WebSkillsCollection>;
 };
@@ -1632,23 +1467,6 @@ export type QueryPageHeaderCollectionArgs = {
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<PageHeaderFilter>;
-};
-
-
-export type QueryPostArgs = {
-  id: Scalars['String']['input'];
-  locale?: InputMaybe<Scalars['String']['input']>;
-  preview?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-
-export type QueryPostCollectionArgs = {
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  locale?: InputMaybe<Scalars['String']['input']>;
-  order?: InputMaybe<Array<InputMaybe<PostOrder>>>;
-  preview?: InputMaybe<Scalars['Boolean']['input']>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<PostFilter>;
 };
 
 

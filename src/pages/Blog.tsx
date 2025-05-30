@@ -9,7 +9,7 @@ interface BlogPostsProps {
   pageColor: typeof ThemeColors[keyof typeof ThemeColors];
 }
 
-export default function BlogPosts({pageColor}: BlogPostsProps) {
+export default function BlogPosts({ pageColor }: BlogPostsProps) {
 
   const [Blog, setBlog] = useState<Blog[]>([]);
   const [header, setHeader] = useState<PageHeaderType>();
@@ -25,17 +25,19 @@ export default function BlogPosts({pageColor}: BlogPostsProps) {
     fetchBlogPosts();
   }, []);
 
-
   return (
-    <>
-      {header ?
-        <PageHeader data={header} headerColor={pageColor} />
+    <main>
+      {header?.title ?
+        <PageHeader title={header.title} content={header.description?.json} headerColor={pageColor} />
         : "loading"}
+
       {loading ? <p>Loading...</p> : (
-        Blog.map(BlogPost => (
-          <PreviewCard data={BlogPost} color={pageColor} />
-        ))
+        <section class='grid grid-col-1 gap-8 content-start mt-8'>
+          {Blog.map(BlogPost => (
+            <PreviewCard data={BlogPost} color={pageColor} />
+          ))}
+        </section>
       )}
-    </>
+    </main>
   );
 }

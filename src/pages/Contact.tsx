@@ -23,15 +23,14 @@ export default function Contact({ pageColor }: ContactProps) {
 
   return (
     <main>
-      {header ?
-        <PageHeader data={header} headerColor={pageColor} />
+      {header?.title ?
+        <PageHeader title={header.title} content={header.description?.json} headerColor={pageColor} />
         : "loading"}
 
-      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="subject">
-        <input type="hidden" name="form-name" value="contact" />
+      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="subject" class='mt-8'>
+        <input type="hidden" name="form-name" value="contact" /> {/* required for form to work */}
 
         <label for="name" class={labelStyling}>Name (required)</label>
-
         <input type="text" id="name" name="name" aria-describedby="nameDesc" required class={inputStyling} />
         <p id="nameDesc">Please give a full name so I'm 100% clear who this is from</p>
 

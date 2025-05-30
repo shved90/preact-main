@@ -5,6 +5,7 @@ import RichText from '@madebyconnor/rich-text-to-jsx'
 import { INLINES } from '@contentful/rich-text-types';
 import { Hyperlink } from '../components/RichTextElems/Hyperlink';
 import { ThemeColors } from '../utils/ThemeColor';
+import { PageHeader } from '../components/PageHeader';
 
 interface BlogPostProps {
   url: string
@@ -30,7 +31,7 @@ export default function BlogPost({ url, pageColor }: BlogPostProps) {
 
   return (
     <div>
-      <h1 class={pageColor.text}>{BlogPost.title}</h1>
+      {BlogPost.title && <PageHeader title={BlogPost.title} content={'some text'} headerColor={pageColor} />}
       <RichText
         richText={BlogPost.content?.json}
         overrides={{
