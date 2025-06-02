@@ -23,19 +23,31 @@ const Navigation = () => {
         )
     }, [path])
 
-    const mobile = `grid divide-y-2 bg-dark-500 divide-dark-300 border-solid border-r-2 border-dark-300 grid-cols-2`
-    const desktop = `md:grid-flow-col md:grid-rows-1 md:grid-cols-4 min-h-full`
-    const extraWide = `2xl:grid-flow-row 2xl:fixed 2xl:left-0 2xl:h-screen 2xl:w-[25%] 2xl:grid-cols-1 2xl:grid-rows-4`
-    const navLinkStyles = {
-        mobile: `text-white h-full w-full flex text-center justify-center items-center`,
-        desktop: `min-h-20`,
-        extraWide: ``
+    const navStyles = {
+        mobile: `grid divide-x-2 divide-y-2 border-solid grid-cols-2`,
+        desktop: `md:grid-flow-col md:grid-rows-1 md:grid-cols-4 md:min-h-full`,
+        extraWide: `xl:grid-flow-row xl:fixed xl:left-0 xl:h-screen xl:w-[25%] xl:grid-cols-1 xl:grid-rows-4 xl:border-r-2 xl:divide-x-0`,
+        light: ``,
+        dark: `dark:bg-dark-500 dark:divide-dark-300 dark:border-dark-300`
     }
 
+    const navLinkStyles = {
+        mobile: `h-full w-full flex text-center justify-center items-center last:border-b-2`,
+        desktop: `min-h-20`,
+        extraWide: `xl:last:border-b-0`,
+        light: ``,
+        dark: `dark:border-dark-300 dark:text-white`
+    }
+
+    const collectiveStyles = {
+        nav: Object.values(navStyles).join(' ').trim(),
+        links: Object.values(navLinkStyles).join(' ').trim()
+    };
+
     return (
-        <nav ref={nav} id="mainNav" class={`${mobile} ${desktop} ${extraWide}`}>
+        <nav ref={nav} id="mainNav" class={collectiveStyles.nav}>
             {navLinks.map(({ href, label, color, isActive }) => (
-                <a href={href} class={`${navLinkStyles.mobile} ${navLinkStyles.desktop} ${navLinkStyles.extraWide} ${color.hover} ${isActive ? color.active : ''}`}>{label}</a>
+                <a href={href} class={`${collectiveStyles.links} ${color.hover} ${isActive ? color.active : ''}`}>{label}</a>
             ))
             }
         </nav>

@@ -18,8 +18,9 @@ export default function Contact({ pageColor }: ContactProps) {
     })();
   }, []);
 
-  const labelStyling = "block text-gray-700 text-sm font-bold mb-2"
-  const inputStyling = "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+  const labelStyling = "block text-sm font-bold mt-4 -mb-2 dark:text-light-500"
+  const inputStyling = "shadow appearance-none border rounded w-full py-2 px-4 dark:text-light-500 leading-tight mt-2 focus:outline-none focus:shadow-outline"
+  const buttonStyling = "text-white bg-purple rounded px-4 py-2 mt-4 text-lg cursor-pointer hover:bg-purple-500"
 
   return (
     <main>
@@ -31,20 +32,22 @@ export default function Contact({ pageColor }: ContactProps) {
         <input type="hidden" name="form-name" value="contact" /> {/* required for form to work */}
 
         <label for="name" class={labelStyling}>Name (required)</label>
+        <sub id="nameDesc">Please give a full name so I'm 100% clear who this is from</sub>
         <input type="text" id="name" name="name" aria-describedby="nameDesc" required class={inputStyling} />
-        <p id="nameDesc">Please give a full name so I'm 100% clear who this is from</p>
+        
 
         <label for="email" class={labelStyling}>Email (required)</label>
+        <sub id="emailDesc">Please make sure its correct, or I wont be able to reply back</sub>
         <input type="email" id="email" name="email" aria-describedby="emailDesc" required class={inputStyling} />
-        <p id="emailDesc">Please make sure its correct, or I wont be able to reply back</p>
+        
 
         <input class="hidden" type="text" name="subject" />
 
-        <label for="message" aria-describedby="messageDesc" class={labelStyling}>Message (required)</label>
-        <p id="messageDesc">The more information I have when receiving your email the better, please dont try to be misterious.</p>
-        <textarea name="message" required class={inputStyling}></textarea>
+        <label for="message" class={labelStyling}>Message (required)</label>
+        <sub id="messageDesc">The more information I have when receiving your email the better, please dont try to be misterious.</sub>
+        <textarea id="message" name="message" aria-describedby="messageDesc" required class={inputStyling}></textarea>
 
-        <button type="submit">Send</button>
+        <button type="submit" class={buttonStyling}>Send</button>
       </form>
     </main>
   );

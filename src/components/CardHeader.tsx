@@ -1,14 +1,9 @@
 import { Blog, Job } from '../../gql/graphql';
 import { ThemeColors } from '../utils/ThemeColor';
+import { dateFormat } from '../utils/utils';
 
 interface CardHeaderProps {
   data: Blog | Job
-}
-
-const dateFormat = (date: string) => {
-  const getDate = new Date(date)
-  const formattedDate = `${getDate.getUTCDate()} ${getDate.toLocaleString('en', { month: 'long' })} ${getDate.getUTCFullYear()}`;
-  return <span class="whitespace-nowrap">{formattedDate}</span>
 }
 
 const CardHeader = ({ data }: CardHeaderProps) => {
@@ -26,9 +21,9 @@ const CardHeader = ({ data }: CardHeaderProps) => {
             {title}
           </h2>
 
-          <p class="text-light-700">{data.location}</p>
-          <p class="text-light-500">{data.role}</p>
-          <p class="text-light-700">
+          <p class="dark:text-light-700">{data.location}</p>
+          <p class="dark:text-light-500">{data.role}</p>
+          <p class="dark:text-light-700">
             {startDate} - {endDate}
           </p>
           
@@ -42,7 +37,7 @@ const CardHeader = ({ data }: CardHeaderProps) => {
               : title
             }
           </h2>
-          <p class="text-light-700">Published on {blogDate}</p>
+          <p class="dark:text-light-700">Published on {blogDate}</p>
         </header>
       }
     </>

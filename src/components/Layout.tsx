@@ -20,9 +20,9 @@ const Layout = ({ children, enableTransitions, toggleTransitions }: LayoutProps)
     main: 'md:row-span-11 p-6'
   }
   const extraWide = {
-    wrapper: '2xl:grid 2xl:grid-rows-none 2xl:grid-flow-col 2xl:grid-cols-12',
-    nav: '2xl:col-span-3',
-    main: '2xl:col-span-9 p-8'
+    wrapper: 'xl:grid xl:grid-rows-none xl:grid-flow-col xl:grid-cols-12',
+    nav: 'xl:col-span-3',
+    main: 'xl:col-span-9 p-8'
   }
 
   return (
@@ -34,7 +34,7 @@ const Layout = ({ children, enableTransitions, toggleTransitions }: LayoutProps)
         </button> */}
       </div>
 
-      <div class={`${mobile.main} ${desktop.main} ${extraWide.main} bg-dark-700`}>
+      <div class={`${mobile.main} ${desktop.main} ${extraWide.main} dark:bg-dark-700 bg-gray-100`}>
         <PageTransition enabled={enableTransitions}>{children}</PageTransition>
       </div>
     </div>

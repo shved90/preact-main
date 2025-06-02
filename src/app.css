@@ -26,15 +26,18 @@
   --color-light-700: #7a7a8c;
 
   --color-purple: #a27;
+  --color-purple-500: #c81f88;
 }
 
 
 
 @layer base {
   body {
-    background: var(--color-dark-700);
-    background: red;
-    color: var(--color-light-500);
+    &.dark {
+      background: var(--color-dark-700);
+      color: var(--color-light-500);
+    }
+    
   }
 
 

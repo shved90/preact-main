@@ -30,8 +30,7 @@ Buildup components, currently only basics are in, missing data block, working he
     * Still a rough mockup, clean and finalize, rework transition logic
     * Update classes responsible for transitioning, make it smooth
 * #### Cards
-    * Consider styling edge cases on different screen sizes 
-    * Add collapsible functionality, maybe [details/summary](https://dev.to/jgustavoas/how-to-fully-animate-the-details-html-element-with-only-css-no-javascript-2n88) elements for native func
+    * Add tooltips to tags for more information on click/hover, make it accessible
     * Check you're happy with design, padding or font size etc.
 
 ### Data
@@ -58,7 +57,6 @@ Buildup components, currently only basics are in, missing data block, working he
 * Add loading states to each component on both component and page views
 * Consider prettify
 * Add SVG icons throughout, either as in old vue version or something else, maybe spritesheet
-* Manage page-by-page color schemes
 * Consider Tailwind theming to fully work with light/dark. Either add a whole bunch of classes for each theme in every component which sounds _insane_, or rewrite the way colors are managed, might require restyling a whole bunch of stuff. Here's a basic [tut](https://www.devgem.io/posts/mastering-tailwind-css-v4-implementing-dynamic-light-and-dark-themes-effortlessly)
 * Consider [ssr](https://preactjs.com/guide/v10/server-side-rendering/), react-iso [supports](https://github.com/preactjs/preact-iso) it, netlify might not, chew some docs
 * Make mastodon.me linking work to reflect on mastodon profile
@@ -72,3 +70,4 @@ Settings widget to configure website for the user, save in localstorage, give su
 * font resize
 * enable/disable animation
 * reading mode for longer blog posts
+

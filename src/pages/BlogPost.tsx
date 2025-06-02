@@ -6,6 +6,7 @@ import { INLINES } from '@contentful/rich-text-types';
 import { Hyperlink } from '../components/RichTextElems/Hyperlink';
 import { ThemeColors } from '../utils/ThemeColor';
 import { PageHeader } from '../components/PageHeader';
+import { dateFormat } from '../utils/utils';
 
 interface BlogPostProps {
   url: string
@@ -16,6 +17,9 @@ export default function BlogPost({ url, pageColor }: BlogPostProps) {
 
   const [BlogPost, setBlogPost] = useState<Blog>();
   const [loading, setLoading] = useState(true);
+
+  const PublishedDate = dateFormat(BlogPost?.sys?.firstPublishedAt)
+  const EditDate = dateFormat(BlogPost?.sys?.publishedAt)
 
   useEffect(() => {
     async function fetchBlogPost() {
@@ -32,6 +36,7 @@ export default function BlogPost({ url, pageColor }: BlogPostProps) {
   return (
     <div>
       {BlogPost.title && <PageHeader title={BlogPost.title} content={'some text'} headerColor={pageColor} />}
+      <p>Published on {PublishedDate} | Edited on {EditDate}</p>
       <RichText
         richText={BlogPost.content?.json}
         overrides={{
