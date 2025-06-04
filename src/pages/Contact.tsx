@@ -18,8 +18,8 @@ export default function Contact({ pageColor }: ContactProps) {
     })();
   }, []);
 
-  const labelStyling = "block text-sm font-bold mt-4 -mb-2 dark:text-light-500"
-  const inputStyling = "shadow appearance-none border rounded w-full py-2 px-4 dark:text-light-500 leading-tight mt-2 focus:outline-none focus:shadow-outline"
+  const labelStyling = "block text-sm font-bold mt-4 -mb-2 dark:text-text-primary"
+  const inputStyling = "shadow appearance-none border rounded w-full py-2 px-4 dark:text-text-primary leading-tight mt-2 focus:outline-none focus:shadow-outline"
   const buttonStyling = "text-white bg-purple rounded px-4 py-2 mt-4 text-lg cursor-pointer hover:bg-purple-500"
 
   return (

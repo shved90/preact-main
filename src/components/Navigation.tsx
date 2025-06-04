@@ -27,16 +27,16 @@ const Navigation = () => {
         mobile: `grid divide-x-2 divide-y-2 border-solid grid-cols-2`,
         desktop: `md:grid-flow-col md:grid-rows-1 md:grid-cols-4 md:min-h-full`,
         extraWide: `xl:grid-flow-row xl:fixed xl:left-0 xl:h-screen xl:w-[25%] xl:grid-cols-1 xl:grid-rows-4 xl:border-r-2 xl:divide-x-0`,
-        light: ``,
-        dark: `dark:bg-dark-500 dark:divide-dark-300 dark:border-dark-300`
+        light: `bg-background-primary`,
+        dark: `dark:bg-background-secondary dark:divide-border-primary dark:border-border-primary`
     }
 
     const navLinkStyles = {
         mobile: `h-full w-full flex text-center justify-center items-center last:border-b-2`,
         desktop: `min-h-20`,
         extraWide: `xl:last:border-b-0`,
-        light: ``,
-        dark: `dark:border-dark-300 dark:text-white`
+        light: `border-border-secondary text-text-primary `,
+        dark: `dark:border-border-primary dark:text-text-primary`,
     }
 
     const collectiveStyles = {

@@ -14,12 +14,12 @@
     "@graphql-codegen/cli": "^5.0.5",
     "@graphql-codegen/client-preset": "^4.7.0",
     "@madebyconnor/rich-text-to-jsx": "^2.3.0",
-    "@tailwindcss/vite": "^4.0.14",
+    "@tailwindcss/vite": "^4.1.8",
     "@tanstack/react-query": "^5.67.2",
     "graphql-request": "^7.1.2",
     "preact": "^10.26.2",
     "preact-iso": "^2.9.1",
-    "tailwindcss": "^4.0.14"
+    "tailwindcss": "^4.1.8"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.10.1",

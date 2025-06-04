@@ -21,9 +21,9 @@ const CardHeader = ({ data }: CardHeaderProps) => {
             {title}
           </h2>
 
-          <p class="dark:text-light-700">{data.location}</p>
-          <p class="dark:text-light-500">{data.role}</p>
-          <p class="dark:text-light-700">
+          <p class="text-text-tertiary">{data.location}</p>
+          <p class="text-text-secondary">{data.role}</p>
+          <p class="text-text-tertiary">
             {startDate} - {endDate}
           </p>
           
@@ -37,7 +37,7 @@ const CardHeader = ({ data }: CardHeaderProps) => {
               : title
             }
           </h2>
-          <p class="dark:text-light-700">Published on {blogDate}</p>
+          <p class="text-text-tertiary">Published on {blogDate}</p>
         </header>
       }
     </>

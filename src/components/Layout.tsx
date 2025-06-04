@@ -26,7 +26,7 @@ const Layout = ({ children, enableTransitions, toggleTransitions }: LayoutProps)
   }
 
   return (
-    <div class={`${mobile.wrapper} ${desktop.wrapper} ${extraWide.wrapper} w-screen h-screen`}>
+    <div class={`${mobile.wrapper} ${desktop.wrapper} ${extraWide.wrapper} w-screen h-screen overflow-x-hidden`}>
       <div class={`${mobile.nav} ${desktop.nav} ${extraWide.nav}`}>
         <Navigation />
         {/* <button onClick={toggleTransitions} class="mt-4 p-2 bg-gray-200 rounded">
@@ -34,7 +34,7 @@ const Layout = ({ children, enableTransitions, toggleTransitions }: LayoutProps)
         </button> */}
       </div>
 
-      <div class={`${mobile.main} ${desktop.main} ${extraWide.main} dark:bg-dark-700 bg-gray-100`}>
+      <div class={`${mobile.main} ${desktop.main} ${extraWide.main} dark:bg-background-primary bg-background-primary`}>
         <PageTransition enabled={enableTransitions}>{children}</PageTransition>
       </div>
     </div>

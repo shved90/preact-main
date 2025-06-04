@@ -8,13 +8,13 @@ interface TagsProps {
 
 const Tags = ({ data, tagColor }: TagsProps) => {
 
-  const tagsStyling = 'px-2 py-1 border-1 text-sm border-solid rounded-lg'
+  const tagsStyling = `px-2 py-1 border-1 text-sm border-solid rounded-lg text-text-primary`
 
   return (
     <aside class='mt-4'>
       <ul class='flex flex-wrap gap-2'>
       {data.tags.map(tag => (
-        <li class={`${tagsStyling}  ${tagColor.text}`}>{tag?.name}</li>
+        <li class={`${tagsStyling}  ${tagColor.background.opauqe}`}>{tag?.name}</li>
       ))}
       </ul>
     </aside>

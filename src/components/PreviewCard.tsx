@@ -21,7 +21,7 @@ const PreviewCard = ({ data, color }: PreviewCardProps) => {
 
 
   return (
-    <article class="border-1 dark:border-dark-300 dark:bg-dark-500 p-5">
+    <article class="border-1 dark:border-border-primary dark:bg-background-secondary bg-background-primary p-5">
       <CardHeader data={data} />
       <div class="mt-4">
         <RichText richText={content}
