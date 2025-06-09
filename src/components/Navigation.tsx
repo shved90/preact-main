@@ -9,8 +9,9 @@ const Navigation = () => {
 
     const [navLinks, setNavLinks] = useState([
         { href: '/', label: 'Home', color: ThemeColors.green.background, isActive: true },
-        { href: '/blog', label: 'Blog', color: ThemeColors.blue.background, isActive: false },
+        { href: '/projects', label: 'Projects', color: ThemeColors.purple.background, isActive: false },
         { href: '/resume', label: 'Resume', color: ThemeColors.orange.background, isActive: false },
+        { href: '/blog', label: 'Blog', color: ThemeColors.blue.background, isActive: false },
         { href: '/contact', label: 'Contact', color: ThemeColors.purple.background, isActive: false },
     ])
 
@@ -24,9 +25,9 @@ const Navigation = () => {
     }, [path])
 
     const navStyles = {
-        mobile: `grid divide-x-2 divide-y-2 border-solid grid-cols-2`,
-        desktop: `md:grid-flow-col md:grid-rows-1 md:grid-cols-4 md:min-h-full`,
-        extraWide: `xl:grid-flow-row xl:fixed xl:left-0 xl:h-screen xl:w-[25%] xl:grid-cols-1 xl:grid-rows-4 xl:border-r-2 xl:divide-x-0`,
+        mobile: `grid divide-x-2 divide-y-2 border-solid grid-cols-3 auto-cols-auto`,
+        desktop: `md:grid-flow-col md:grid-rows-1 md:grid-cols-5 md:min-h-full`,
+        extraWide: `xl:grid-flow-row xl:fixed xl:left-0 xl:h-screen xl:w-[25%] xl:grid-cols-1 xl:grid-rows-5 xl:border-r-2 xl:divide-x-0`,
         light: `bg-background-primary`,
         dark: `dark:bg-background-secondary dark:divide-border-primary dark:border-border-primary`
     }

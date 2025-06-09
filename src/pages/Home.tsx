@@ -42,9 +42,14 @@ export default function Home({ pageColor }: HomeProps) {
               ))}
             </section>
             <section class="grid-col-1 grid gap-8 content-start">
-              {blog.map((blogPost) => (
-                <PreviewCard data={blogPost} color={ThemeColors.blue} />
-              ))}
+              {blog.length ?
+                blog.map((blogPost) => (
+                  <PreviewCard data={blogPost} color={ThemeColors.blue} />
+                ))
+                :
+                "No blog posts yet, watch this space."
+              }
+              { }
             </section>
           </div>
         )}

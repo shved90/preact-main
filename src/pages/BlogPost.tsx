@@ -19,7 +19,7 @@ export default function BlogPost({ url, pageColor }: BlogPostProps) {
   const [loading, setLoading] = useState(true);
 
   const PublishedDate = dateFormat(BlogPost?.sys?.firstPublishedAt)
-  const EditDate = dateFormat(BlogPost?.sys?.publishedAt)
+  const EditDate = dateFormat(BlogPost?.sys?.publishedAt, true)
 
   useEffect(() => {
     async function fetchBlogPost() {
@@ -34,20 +34,22 @@ export default function BlogPost({ url, pageColor }: BlogPostProps) {
   if (!BlogPost) return <p>Post not found</p>;
 
   return (
-    <div>
-      {BlogPost.title && <PageHeader title={BlogPost.title} content={'some text'} headerColor={pageColor} />}
-      <p>Published on {PublishedDate} | Edited on {EditDate}</p>
-      <RichText
-        richText={BlogPost.content?.json}
-        overrides={{
-          [INLINES.HYPERLINK]: {
-            component: Hyperlink,
-            props: {
-              class: pageColor.link
+    <article>
+      {BlogPost.title && <PageHeader title={BlogPost.title} headerColor={pageColor} />}
+      <p class='mt-2 mb-12 font-bold'>Published on {PublishedDate} | Edited on {EditDate}</p>
+      <section class="blogPost">
+        <RichText
+          richText={BlogPost.content?.json}
+          overrides={{
+            [INLINES.HYPERLINK]: {
+              component: Hyperlink,
+              props: {
+                class: pageColor.link
+              }
             }
-          }
-        }}
-      />
-    </div>
+          }}
+        />
+      </section>
+    </article>
   );
 }

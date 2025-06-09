@@ -46,5 +46,17 @@
     }
 
   }
-
+  .blogPost{
+    p {
+      & + p {
+        @apply mt-4;
+      }
+    }
+    h3 {
+      @apply text-xl font-bold text-blue;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      @apply mt-6 mb-4;
+    }
+  }
 }

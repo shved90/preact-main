@@ -1,10 +1,11 @@
 
 
-const dateFormat = (date: string) => {
+const dateFormat = (date: string, isPubDate?: boolean) => {
   const getDate = new Date(date)
   const trimmedDate = date?.slice(0, 10)
   const formattedDate = `${getDate.getUTCDate()} ${getDate.toLocaleString('en', { month: 'long' })} ${getDate.getUTCFullYear()}`;
-  return <time datetime={trimmedDate} class="whitespace-nowrap">{formattedDate}</time>
+  const pubdate = {...(isPubDate && { pubdate: true } )}
+  return <time datetime={trimmedDate} class="whitespace-nowrap" {...pubdate}>{formattedDate}</time>
 }
 
 export { dateFormat }
