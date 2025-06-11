@@ -9,11 +9,17 @@ interface ProjectRouteProps {
 }
 
 const InterestCalculator = lazy(() => import('../pages/projects/InterestCalculator'));
+const ReactLoginDemo = lazy(() => import('../pages/projects/ReactLoginDemo'));
 
 export const ProjectRoutes: ProjectRouteProps[] = [
     {
         path: '/projects/interest-calculator',
         component: InterestCalculator,
+        pageColor: ThemeColors.purple
+    },
+    {
+        path: '/projects/react-login-demo',
+        component: ReactLoginDemo,
         pageColor: ThemeColors.purple
     },
 ];

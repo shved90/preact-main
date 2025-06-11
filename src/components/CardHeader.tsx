@@ -1,9 +1,9 @@
-import { Blog, Job } from '../../gql/graphql';
+import { Blog, Job, Projects } from '../../gql/graphql';
 import { ThemeColors } from '../utils/ThemeColor';
 import { dateFormat } from '../utils/utils';
 
 interface CardHeaderProps {
-  data: Blog | Job
+  data: Blog | Job | Projects
 }
 
 const CardHeader = ({ data }: CardHeaderProps) => {
@@ -14,7 +14,7 @@ const CardHeader = ({ data }: CardHeaderProps) => {
 
   return (
     <>
-      {data.__typename == "Job" ?
+      {data.__typename == "Job" &&
         <header class={`grid grid-cols-2 grid-rows-2`}>
 
           <h2 class={`font-bold ${ThemeColors.orange.text}`}>
@@ -26,18 +26,29 @@ const CardHeader = ({ data }: CardHeaderProps) => {
           <p class="text-text-tertiary">
             {startDate} - {endDate}
           </p>
-          
+
 
         </header>
-        :
+      }
+      {data.__typename == "Blog" &&
         <header class={`font-bold`}>
           <h2 class={ThemeColors.blue.link}>
             {data.slug
-              ? <a href={'blog/'+data.slug}>{title}</a>
+              ? <a href={'blog/' + data.slug}>{title}</a>
               : title
             }
           </h2>
           <p class="text-text-tertiary">Published on {blogDate}</p>
+        </header>
+      }
+      {data.__typename == "Projects" &&
+        <header class={`font-bold`}>
+          <h2 class={ThemeColors.purple.link}>
+            {data.slug
+              ? <a href={'projects/' + data.slug}>{title}</a>
+              : title
+            }
+          </h2>
         </header>
       }
     </>

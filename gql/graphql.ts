@@ -1322,6 +1322,150 @@ export enum PageHeaderOrder {
   TitleDesc = 'title_DESC'
 }
 
+/** My hobbies, interests, curious dabbles and experiments [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/projects) */
+export type Projects = Entry & _Node & {
+  __typename?: 'Projects';
+  _id: Scalars['ID']['output'];
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<ProjectsLinkingCollections>;
+  slug?: Maybe<Scalars['String']['output']>;
+  summary?: Maybe<ProjectsSummary>;
+  sys: Sys;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
+
+/** My hobbies, interests, curious dabbles and experiments [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/projects) */
+export type ProjectsLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+/** My hobbies, interests, curious dabbles and experiments [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/projects) */
+export type ProjectsSlugArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** My hobbies, interests, curious dabbles and experiments [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/projects) */
+export type ProjectsSummaryArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** My hobbies, interests, curious dabbles and experiments [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/projects) */
+export type ProjectsTitleArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ProjectsCollection = {
+  __typename?: 'ProjectsCollection';
+  items: Array<Maybe<Projects>>;
+  limit: Scalars['Int']['output'];
+  skip: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type ProjectsFilter = {
+  AND?: InputMaybe<Array<InputMaybe<ProjectsFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<ProjectsFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  slug?: InputMaybe<Scalars['String']['input']>;
+  slug_contains?: InputMaybe<Scalars['String']['input']>;
+  slug_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  slug_not?: InputMaybe<Scalars['String']['input']>;
+  slug_not_contains?: InputMaybe<Scalars['String']['input']>;
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  summary_contains?: InputMaybe<Scalars['String']['input']>;
+  summary_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  summary_not_contains?: InputMaybe<Scalars['String']['input']>;
+  sys?: InputMaybe<SysFilter>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  title_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ProjectsLinkingCollections = {
+  __typename?: 'ProjectsLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type ProjectsLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export enum ProjectsOrder {
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
+export type ProjectsSummary = {
+  __typename?: 'ProjectsSummary';
+  json: Scalars['JSON']['output'];
+  links: ProjectsSummaryLinks;
+};
+
+export type ProjectsSummaryAssets = {
+  __typename?: 'ProjectsSummaryAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type ProjectsSummaryEntries = {
+  __typename?: 'ProjectsSummaryEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type ProjectsSummaryLinks = {
+  __typename?: 'ProjectsSummaryLinks';
+  assets: ProjectsSummaryAssets;
+  entries: ProjectsSummaryEntries;
+  resources: ProjectsSummaryResources;
+};
+
+export type ProjectsSummaryResources = {
+  __typename?: 'ProjectsSummaryResources';
+  block: Array<ProjectsSummaryResourcesBlock>;
+  hyperlink: Array<ProjectsSummaryResourcesHyperlink>;
+  inline: Array<ProjectsSummaryResourcesInline>;
+};
+
+export type ProjectsSummaryResourcesBlock = ResourceLink & {
+  __typename?: 'ProjectsSummaryResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type ProjectsSummaryResourcesHyperlink = ResourceLink & {
+  __typename?: 'ProjectsSummaryResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type ProjectsSummaryResourcesInline = ResourceLink & {
+  __typename?: 'ProjectsSummaryResourcesInline';
+  sys: ResourceSys;
+};
+
 export type Query = {
   __typename?: 'Query';
   _node?: Maybe<_Node>;
@@ -1339,6 +1483,8 @@ export type Query = {
   jobCollection?: Maybe<JobCollection>;
   pageHeader?: Maybe<PageHeader>;
   pageHeaderCollection?: Maybe<PageHeaderCollection>;
+  projects?: Maybe<Projects>;
+  projectsCollection?: Maybe<ProjectsCollection>;
   webSkills?: Maybe<WebSkills>;
   webSkillsCollection?: Maybe<WebSkillsCollection>;
 };
@@ -1467,6 +1613,23 @@ export type QueryPageHeaderCollectionArgs = {
   preview?: InputMaybe<Scalars['Boolean']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<PageHeaderFilter>;
+};
+
+
+export type QueryProjectsArgs = {
+  id: Scalars['String']['input'];
+  locale?: InputMaybe<Scalars['String']['input']>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+
+export type QueryProjectsCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Array<InputMaybe<ProjectsOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ProjectsFilter>;
 };
 
 

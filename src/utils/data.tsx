@@ -1,4 +1,4 @@
-type QueryKey = 'PageHeader' | 'BlogPost' | 'Blog' | 'JobList' | 'latestBlogsAndJobs';
+type QueryKey = 'PageHeader' | 'Blog' | 'BlogPost' | 'JobList' | 'Projects' | 'latestProjectsAndJobs';
 
 const queryMap: Record<QueryKey, string> = {
 
@@ -103,9 +103,34 @@ const queryMap: Record<QueryKey, string> = {
     }
   `,
 
-  latestBlogsAndJobs: `
-    query getLatestBlogsAndJobs {
-      blogCollection(limit: 4, order:  sys_firstPublishedAt_DESC) {
+
+  Projects: `
+    query getAllProjects {
+      projectsCollection{
+        items{
+          __typename
+          title
+          slug
+          summary {
+            json
+          }
+          sys {
+            publishedAt
+            firstPublishedAt
+          }
+          contentfulMetadata{
+            tags{
+              name
+            }
+          }
+        }
+      }
+    }
+  `,
+
+  latestProjectsAndJobs: `
+    query getLatestProjectsAndJobs {
+      projectsCollection(limit: 4, order:  sys_firstPublishedAt_DESC) {
         items {
           __typename
           title
@@ -154,9 +179,10 @@ const queryMap: Record<QueryKey, string> = {
 type QueryVariablesMap = {
   PageHeader: { variable: string };
   Blog: undefined;
-  JobList: undefined;
-  latestBlogsAndJobs: undefined;
   BlogPost: { variable: string };
+  JobList: undefined;
+  Projects: undefined;
+  latestProjectsAndJobs: undefined;
 };
 
 type MaybeArray<T> = T | T[];

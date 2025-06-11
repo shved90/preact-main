@@ -1,5 +1,5 @@
 import RichText from '@madebyconnor/rich-text-to-jsx'
-import { Blog, Job } from '../../gql/graphql';
+import { Blog, Job, Projects } from '../../gql/graphql';
 import { CardHeader } from './CardHeader';
 import { INLINES } from '@contentful/rich-text-types';
 import { Hyperlink } from './RichTextElems/Hyperlink';
@@ -7,7 +7,7 @@ import { ThemeColors } from '../utils/ThemeColor';
 import { Tags } from './Tags';
 
 type PreviewCardProps = {
-  data: Blog | Job
+  data: Blog | Job | Projects
   color: typeof ThemeColors[keyof typeof ThemeColors];
 }
 
