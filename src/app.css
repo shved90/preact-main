@@ -46,7 +46,8 @@
     }
 
   }
-  .blogPost{
+  .richTextStyling{
+    @apply mt-12;
     p {
       & + p {
         @apply mt-4;

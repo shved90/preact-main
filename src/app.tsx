@@ -10,6 +10,7 @@ const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost.tsx"));
 const Projects = lazy(() => import("./pages/Projects"));
 const Resume = lazy(() => import("./pages/Resume"));
+const JobPost = lazy(() => import("./pages/JobPost"));
 const Contact = lazy(() => import("./pages/Contact.tsx"));
 const NotFound = lazy(() => import('./pages/404'));
 
@@ -29,6 +30,7 @@ export function App() {
               <Route path={path} component={component} pageColor={pageColor} />
             ))}
             <Route path="/resume" component={Resume} pageColor={ThemeColors.orange} />
+            <Route path="/resume/:url" component={(props) => <JobPost url={props.path.split('/').pop() as string} pageColor={ThemeColors.orange} />} />
             <Route path="/contact" component={Contact} pageColor={ThemeColors.purple} />
             <Route default component={NotFound} />
           </Router>

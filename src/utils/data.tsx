@@ -1,4 +1,4 @@
-type QueryKey = 'PageHeader' | 'Blog' | 'BlogPost' | 'JobList' | 'Projects' | 'latestProjectsAndJobs';
+type QueryKey = 'PageHeader' | 'Blog' | 'BlogPost' | 'JobList' | 'Job' | 'Projects' | 'latestProjectsAndJobs';
 
 const queryMap: Record<QueryKey, string> = {
 
@@ -103,6 +103,33 @@ const queryMap: Record<QueryKey, string> = {
     }
   `,
 
+  Job: `
+    query getJobBySlug ($variable: String!) {
+        jobCollection (where: {slug: $variable}){
+          items{
+            __typename
+            endDate
+            startDate
+            companyUrl
+            companyName
+            slug
+            role
+            location
+            shortSummary{
+              json
+            }
+            description{
+              json
+            }
+            contentfulMetadata{
+              tags{
+                name
+              }
+            }
+          }
+        }
+      }
+  `,
 
   Projects: `
     query getAllProjects {
@@ -181,6 +208,7 @@ type QueryVariablesMap = {
   Blog: undefined;
   BlogPost: { variable: string };
   JobList: undefined;
+  Job: { variable: string };
   Projects: undefined;
   latestProjectsAndJobs: undefined;
 };

@@ -8,9 +8,9 @@ interface CardHeaderProps {
 
 const CardHeader = ({ data }: CardHeaderProps) => {
   const title = (data as Blog).title || (data as Job).companyName
-  const blogDate = dateFormat((data as Blog).sys?.firstPublishedAt)
-  const startDate = dateFormat((data as Job).startDate)
-  const endDate = dateFormat((data as Job).endDate)
+  const blogDate = dateFormat({ date: (data as Blog).sys?.firstPublishedAt })
+  const startDate = dateFormat({ date: (data as Job).startDate })
+  const endDate = dateFormat({ date: (data as Job).endDate })
 
   return (
     <>
@@ -18,7 +18,10 @@ const CardHeader = ({ data }: CardHeaderProps) => {
         <header class={`grid grid-cols-2 grid-rows-2`}>
 
           <h2 class={`font-bold ${ThemeColors.orange.text}`}>
-            {title}
+            {data.slug
+              ? <a href={'resume/' + data.slug}>{title}</a>
+              : title
+            }
           </h2>
 
           <p class="text-text-tertiary">{data.location}</p>
@@ -26,8 +29,7 @@ const CardHeader = ({ data }: CardHeaderProps) => {
           <p class="text-text-tertiary">
             {startDate} - {endDate}
           </p>
-
-
+          
         </header>
       }
       {data.__typename == "Blog" &&

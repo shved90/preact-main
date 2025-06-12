@@ -47,7 +47,7 @@ export default function Home({ pageColor }: HomeProps) {
                   <PreviewCard data={project} color={ThemeColors.blue} />
                 ))
                 :
-                "No blog posts yet, watch this space."
+                "No Projects yet, watch this space."
               }
               { }
             </section>

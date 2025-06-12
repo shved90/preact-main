@@ -18,8 +18,8 @@ export default function BlogPost({ url, pageColor }: BlogPostProps) {
   const [BlogPost, setBlogPost] = useState<Blog>();
   const [loading, setLoading] = useState(true);
 
-  const PublishedDate = dateFormat(BlogPost?.sys?.firstPublishedAt)
-  const EditDate = dateFormat(BlogPost?.sys?.publishedAt, true)
+  const PublishedDate = dateFormat({ date: BlogPost?.sys?.firstPublishedAt })
+  const EditDate = dateFormat({ date: BlogPost?.sys?.publishedAt, isPubDate: true })
 
   useEffect(() => {
     async function fetchBlogPost() {
@@ -37,7 +37,7 @@ export default function BlogPost({ url, pageColor }: BlogPostProps) {
     <article>
       {BlogPost.title && <PageHeader title={BlogPost.title} headerColor={pageColor} />}
       <p class='mt-2 mb-12 font-bold'>Published on {PublishedDate} | Edited on {EditDate}</p>
-      <section class="blogPost">
+      <section class="richTextStyling">
         <RichText
           richText={BlogPost.content?.json}
           overrides={{

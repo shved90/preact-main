@@ -25,7 +25,7 @@ const Navigation = () => {
     }, [path])
 
     const navStyles = {
-        mobile: `grid divide-x-2 divide-y-2 border-solid grid-cols-3 auto-cols-auto`,
+        mobile: `grid divide-x-2 divide-y-2 border-solid grid-cols-12 auto-cols-auto`,
         desktop: `md:grid-flow-col md:grid-rows-1 md:grid-cols-5 md:min-h-full`,
         extraWide: `xl:grid-flow-row xl:fixed xl:left-0 xl:h-screen xl:w-[25%] xl:grid-cols-1 xl:grid-rows-5 xl:border-r-2 xl:divide-x-0`,
         light: `bg-background-primary`,
@@ -33,8 +33,8 @@ const Navigation = () => {
     }
 
     const navLinkStyles = {
-        mobile: `h-full w-full flex text-center justify-center items-center last:border-b-2`,
-        desktop: `min-h-20`,
+        mobile: `h-full w-full flex text-center justify-center items-center last:border-b-2 col-span-4 nth-[4]:col-span-6 nth-[5]:col-span-6`,
+        desktop: `min-h-20 md:col-span-1 md:nth-[4]:col-span-1 md:nth-[5]:col-span-1`,
         extraWide: `xl:last:border-b-0`,
         light: `border-border-secondary text-text-primary `,
         dark: `dark:border-border-primary dark:text-text-primary`,
