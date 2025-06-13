@@ -9,15 +9,15 @@ interface CardHeaderProps {
 const CardHeader = ({ data }: CardHeaderProps) => {
   const title = (data as Blog).title || (data as Job).companyName
   const blogDate = dateFormat({ date: (data as Blog).sys?.firstPublishedAt })
-  const startDate = dateFormat({ date: (data as Job).startDate })
-  const endDate = dateFormat({ date: (data as Job).endDate })
+  const startDate = dateFormat({ date: (data as Job).startDate, hideDay: true })
+  const endDate = dateFormat({ date: (data as Job).endDate, hideDay: true })
 
   return (
     <>
       {data.__typename == "Job" &&
         <header class={`grid grid-cols-2 grid-rows-2`}>
 
-          <h2 class={`font-bold ${ThemeColors.orange.text}`}>
+          <h2 class={`font-bold ${ThemeColors.orange.link}`}>
             {data.slug
               ? <a href={'resume/' + data.slug}>{title}</a>
               : title
@@ -29,7 +29,7 @@ const CardHeader = ({ data }: CardHeaderProps) => {
           <p class="text-text-tertiary">
             {startDate} - {endDate}
           </p>
-          
+
         </header>
       }
       {data.__typename == "Blog" &&

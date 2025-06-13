@@ -907,6 +907,7 @@ export type Job = Entry & _Node & {
   shortSummary?: Maybe<JobShortSummary>;
   slug?: Maybe<Scalars['String']['output']>;
   startDate?: Maybe<Scalars['DateTime']['output']>;
+  strapline?: Maybe<Scalars['String']['output']>;
   sys: Sys;
 };
 
@@ -967,6 +968,12 @@ export type JobSlugArgs = {
 
 /** Places I worked at [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/job) */
 export type JobStartDateArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Places I worked at [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/job) */
+export type JobStraplineArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -1089,6 +1096,13 @@ export type JobFilter = {
   startDate_lte?: InputMaybe<Scalars['DateTime']['input']>;
   startDate_not?: InputMaybe<Scalars['DateTime']['input']>;
   startDate_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  strapline?: InputMaybe<Scalars['String']['input']>;
+  strapline_contains?: InputMaybe<Scalars['String']['input']>;
+  strapline_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  strapline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  strapline_not?: InputMaybe<Scalars['String']['input']>;
+  strapline_not_contains?: InputMaybe<Scalars['String']['input']>;
+  strapline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sys?: InputMaybe<SysFilter>;
 };
 
@@ -1120,6 +1134,8 @@ export enum JobOrder {
   SlugDesc = 'slug_DESC',
   StartDateAsc = 'startDate_ASC',
   StartDateDesc = 'startDate_DESC',
+  StraplineAsc = 'strapline_ASC',
+  StraplineDesc = 'strapline_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',

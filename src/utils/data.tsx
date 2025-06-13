@@ -84,6 +84,7 @@ const queryMap: Record<QueryKey, string> = {
           startDate
           companyUrl
           companyName
+          strapline
           slug
           role
           location
@@ -112,6 +113,7 @@ const queryMap: Record<QueryKey, string> = {
             startDate
             companyUrl
             companyName
+            strapline
             slug
             role
             location
@@ -183,6 +185,7 @@ const queryMap: Record<QueryKey, string> = {
           startDate
           companyUrl
           companyName
+          strapline
           slug
           role
           location

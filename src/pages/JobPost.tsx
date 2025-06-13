@@ -35,7 +35,7 @@ export default function JobPost({ url, pageColor }: JobPostProps) {
   console.log(JobPost)
   return (
     <article>
-      {JobPost.companyName && <PageHeader title={JobPost.companyName} content='Global Automotive Software Specialists, providing World Class Systems' headerColor={pageColor} />}
+      {JobPost.companyName && <PageHeader title={JobPost.companyName} content={JobPost.strapline} headerColor={pageColor} />}
 
       <section class="richTextStyling">
         
