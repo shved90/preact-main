@@ -44,7 +44,7 @@ export default function Home({ pageColor }: HomeProps) {
             <section class="grid-col-1 grid gap-8 content-start">
               {projects.length ?
                 projects.map((project) => (
-                  <PreviewCard data={project} color={ThemeColors.blue} />
+                  <PreviewCard data={project} color={ThemeColors.purple} />
                 ))
                 :
                 "No Projects yet, watch this space."

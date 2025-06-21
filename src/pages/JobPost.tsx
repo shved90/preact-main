@@ -56,7 +56,7 @@ export default function JobPost({ url, pageColor }: JobPostProps) {
           }}
         />
 
-        <div class="mt-12">
+        <div class="py-8">
           {JobPost.contentfulMetadata.tags.length ? <Tags data={JobPost.contentfulMetadata} tagColor={pageColor} /> : null}
         </div>
       </section>

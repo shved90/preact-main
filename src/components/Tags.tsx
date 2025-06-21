@@ -11,11 +11,11 @@ const Tags = ({ data, tagColor }: TagsProps) => {
   const tagsStyling = `px-2 py-1 border-1 text-sm border-solid rounded-lg text-text-primary list-none m-0`
 
   return (
-    <aside class='mt-4'>
+    <aside>
       <ul class='flex flex-wrap gap-2 m-0'>
-      {data.tags.map(tag => (
-        <li class={`${tagsStyling}  ${tagColor.background.opauqe}`}>{tag?.name}</li>
-      ))}
+        {data.tags.map(tag => (
+          <li class={`${tagsStyling}  ${tagColor.background.opauqe}`}>{tag?.name}</li>
+        ))}
       </ul>
     </aside>
   )

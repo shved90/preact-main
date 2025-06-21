@@ -12,7 +12,7 @@ const Navigation = () => {
         { href: '/projects', label: 'Projects', color: ThemeColors.purple.background, isActive: false },
         { href: '/resume', label: 'Resume', color: ThemeColors.orange.background, isActive: false },
         { href: '/blog', label: 'Blog', color: ThemeColors.blue.background, isActive: false },
-        { href: '/contact', label: 'Contact', color: ThemeColors.purple.background, isActive: false },
+        { href: '/contact', label: 'Contact', color: ThemeColors.teal.background, isActive: false },
     ])
 
     useEffect(() => {

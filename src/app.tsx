@@ -31,7 +31,7 @@ export function App() {
             ))}
             <Route path="/resume" component={Resume} pageColor={ThemeColors.orange} />
             <Route path="/resume/:url" component={(props) => <JobPost url={props.path.split('/').pop() as string} pageColor={ThemeColors.orange} />} />
-            <Route path="/contact" component={Contact} pageColor={ThemeColors.purple} />
+            <Route path="/contact" component={Contact} pageColor={ThemeColors.teal} />
             <Route default component={NotFound} />
           </Router>
         </Layout>

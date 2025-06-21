@@ -27,6 +27,8 @@ const PageHeader = ({ title, content, headerColor }: PageHeaderProps) => {
       ? <p class='my-4 text-lg'>{content}</p>
       : <RichText richText={content} />
 
+  document.title=title + ' - by Alexander Shved'
+
   return (
     <header>
       <h1 class={titleStyles.mobile + ' ' + headerColor.text}>{title}</h1>

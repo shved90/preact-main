@@ -34,7 +34,11 @@ const PreviewCard = ({ data, color }: PreviewCardProps) => {
             }
           }}
         />
-        {data.contentfulMetadata.tags.length ? <Tags data={data.contentfulMetadata} tagColor={color} /> : null}
+        {data.contentfulMetadata.tags.length &&
+          <div class='mt-4'>
+            <Tags data={data.contentfulMetadata} tagColor={color} />
+          </div>
+        }
       </div>
     </article>
   );

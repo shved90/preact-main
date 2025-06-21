@@ -43,6 +43,17 @@ const ThemeColors = {
       active: '!bg-purple/50'
     },
     border: 'border-purple'
+  },
+  teal: {
+    text: 'text-teal',
+    link: 'text-teal hover:text-teal/80 hover:underline',
+    background: {
+      static: 'bg-teal',
+      opauqe: 'bg-teal/60',
+      hover: 'hover:bg-teal/50',
+      active: '!bg-teal/50'
+    },
+    border: 'border-teal'
   }
 }
 
