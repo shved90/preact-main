@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'preact/hooks';
-import { gqlfetch } from '../utils/data';
+import { gqlfetch } from '../utils/Data';
 import { Blog } from '../../gql/graphql';
 import RichText from '@madebyconnor/rich-text-to-jsx'
 import { INLINES } from '@contentful/rich-text-types';
 import { Hyperlink } from '../components/RichTextElems/Hyperlink';
 import { ThemeColors } from '../utils/ThemeColor';
 import { PageHeader } from '../components/PageHeader';
-import { dateFormat } from '../utils/utils';
+import { dateFormat } from '../utils/DateFormat';
+import { MetaTags } from '../utils/MetaTags';
 
 interface BlogPostProps {
   url: string
@@ -18,6 +19,8 @@ export default function BlogPost({ url, pageColor }: BlogPostProps) {
   const [BlogPost, setBlogPost] = useState<Blog>();
   const [loading, setLoading] = useState(true);
 
+  MetaTags({ metaData: BlogPost })
+
   const PublishedDate = dateFormat({ date: BlogPost?.sys?.firstPublishedAt })
   const EditDate = dateFormat({ date: BlogPost?.sys?.publishedAt, isPubDate: true })
 
@@ -28,6 +31,7 @@ export default function BlogPost({ url, pageColor }: BlogPostProps) {
       setLoading(false);
     }
     fetchBlogPost();
+
   }, []);
 
   if (loading) return <p>Loading...</p>;

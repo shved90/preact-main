@@ -40,7 +40,7 @@ Buildup components, currently only basics are in, missing data block, working he
 ### Pages
 * Abstract and simplify data fetching more
 * Thoroughly test richtext package with CMS data types across the board to make sure it works long-term
-* Add proper metadata and card preview to individual blog posts
+* Add meta card preview to individual posts
 
 ### Contact
 * Consider form validation options like [in React](https://rafaelcamargo.com/blog/validating-react-forms-easily-without-third-party-libraries/) or something else
@@ -54,7 +54,7 @@ Buildup components, currently only basics are in, missing data block, working he
 * Consider Tailwind theming to fully work with light/dark. Either add a whole bunch of classes for each theme in every component which sounds _insane_, or rewrite the way colors are managed, might require restyling a whole bunch of stuff. Here's a basic [tut](https://www.devgem.io/posts/mastering-tailwind-css-v4-implementing-dynamic-light-and-dark-themes-effortlessly)
 * Consider [ssr](https://preactjs.com/guide/v10/server-side-rendering/), react-iso [supports](https://github.com/preactjs/preact-iso) it, netlify might not, chew some docs
 * Make mastodon.me linking work to reflect on mastodon profile
-* Dont forget favico, dynamic metadata and tab titles
+* Update metadata with simple images and figure out metadata for hardcoded projects
 
 ### Settings?
 

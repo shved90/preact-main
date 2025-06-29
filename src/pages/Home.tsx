@@ -1,9 +1,10 @@
 import { useEffect, useState } from "preact/hooks";
-import { gqlfetch } from "../utils/data";
-import { Job, Projects, PageHeader as PageHeaderType } from "../../gql/graphql";
+import { gqlfetch } from "../utils/Data";
+import { Blog, Projects, PageHeader as PageHeaderType } from "../../gql/graphql";
 import { PreviewCard } from "../components/PreviewCard";
 import { PageHeader } from "../components/PageHeader";
 import { ThemeColors } from "../utils/ThemeColor";
+import { MetaTags } from "../utils/MetaTags";
 
 interface HomeProps {
   pageColor: typeof ThemeColors[keyof typeof ThemeColors];
@@ -11,15 +12,17 @@ interface HomeProps {
 
 export default function Home({ pageColor }: HomeProps) {
   const [projects, setProjects] = useState<Projects[]>([]);
-  const [jobs, setJobs] = useState<Job[]>([]);
+  const [blog, setBlog] = useState<Blog[]>([]);
   const [header, setHeader] = useState<PageHeaderType>();
   const [loading, setLoading] = useState(true);
 
+  MetaTags({ headerData: header })
+
   useEffect(() => {
     (async () => {
-      const data = await gqlfetch(['latestProjectsAndJobs', 'PageHeader'], { PageHeader: { variable: "home" } });
-      setProjects(data.latestProjectsAndJobs.projectsCollection.items || []);
-      setJobs(data.latestProjectsAndJobs.jobCollection.items || []);
+      const data = await gqlfetch(['latestProjectsAndBlog', 'PageHeader'], { PageHeader: { variable: "home" } });
+      setProjects(data.latestProjectsAndBlog.projectsCollection.items || []);
+      setBlog(data.latestProjectsAndBlog.blogCollection.items || []);
       setHeader(data.PageHeader.pageHeaderCollection.items[0]);
       setLoading(false);
     })();
@@ -28,7 +31,7 @@ export default function Home({ pageColor }: HomeProps) {
   return (
     <main>
       {header?.title ?
-        <PageHeader title={header.title} content={header.description?.json} headerColor={pageColor} />
+        <PageHeader title={header.title} content={header.description!} headerColor={pageColor} />
         : "loading"}
 
       <div class="h-full flex w-full justify-center items-center mt-8">
@@ -37,8 +40,8 @@ export default function Home({ pageColor }: HomeProps) {
         ) : (
           <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 content-start justify-start">
             <section class="grid-col-1 grid gap-8 content-start">
-              {jobs.map((job) => (
-                <PreviewCard data={job} color={ThemeColors.orange} />
+              {blog.map((blogPost) => (
+                <PreviewCard data={blogPost} color={ThemeColors.blue} />
               ))}
             </section>
             <section class="grid-col-1 grid gap-8 content-start">

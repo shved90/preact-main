@@ -1,28 +1,46 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Preact + TS</title>
-  </head>
-  <body class="dark">
-    <div id="app"></div>
 
-    <form name="contact" data-netlify="true" hidden>
-        <input type="text" name="name" />
-        <input type="email" name="email" />
-        <input type="text" name="subject" />
-        <textarea name="message"></textarea>
-      </form>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="rgb(14, 15, 15)">
 
-    <script>
-        // const darkThemeMq = window.matchMedia("(prefers-color-scheme: light)");
-        // if (darkThemeMq.matches) {
-        //   console.log(darkThemeMq)
-        //   document.body.classList.remove('dark')
-        // }
-    </script>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <title>Welcome to shved.uk - All things Alex</title>
+  <meta name="description"
+    content="Web developer with keen focus on minimalism, semantics, and accessibility. I focus on holistic systemic development and scalable approach. Visit my website for my career details, blog, rosume or projects I worked on for personal joy of professional life." />
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://shved.uk/" />
+  <meta property="og:title" content="Welcome to shved.uk - All things Alex" />
+  <meta property="og:description"
+    content="Web developer with keen focus on minimalism, semantics, and accessibility. I focus on holistic systemic development and scalable approach. Visit my website for my career details, blog, rosume or projects I worked on for personal joy of professional life." />
+  <meta property="og:image" content="https://www.example.com/image.jpg" />
+
+  <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
+
+  <link rel="icon" href="browser_tab_icon.ico">
+  <link rel="apple-touch-icon" href="apple_icon.png">
+  <link rel="me" href="https://mastodon.social/@shved">
+</head>
+
+<body class="dark">
+  <div id="app"></div>
+
+  <form name="contact" data-netlify="true" hidden>
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="text" name="subject" />
+    <textarea name="message"></textarea>
+  </form>
+
+  <script>
+    // const darkThemeMq = window.matchMedia("(prefers-color-scheme: light)");
+    // if (darkThemeMq.matches) {
+    //   console.log(darkThemeMq)
+    //   document.body.classList.remove('dark')
+    // }
+  </script>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>

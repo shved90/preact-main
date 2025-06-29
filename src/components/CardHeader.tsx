@@ -1,6 +1,6 @@
 import { Blog, Job, Projects } from '../../gql/graphql';
 import { ThemeColors } from '../utils/ThemeColor';
-import { dateFormat } from '../utils/utils';
+import { dateFormat } from '../utils/DateFormat';
 
 interface CardHeaderProps {
   data: Blog | Job | Projects

@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'preact/hooks';
-import { gqlfetch } from '../utils/data';
+import { gqlfetch } from '../utils/Data';
 import { Blog, PageHeader as PageHeaderType } from '../../gql/graphql'
 import { PreviewCard } from '../components/PreviewCard';
 import { ThemeColors } from '../utils/ThemeColor';
 import { PageHeader } from '../components/PageHeader';
+import { MetaTags } from '../utils/MetaTags';
 
 interface BlogPostsProps {
   pageColor: typeof ThemeColors[keyof typeof ThemeColors];
@@ -14,6 +15,8 @@ export default function BlogPosts({ pageColor }: BlogPostsProps) {
   const [Blog, setBlog] = useState<Blog[]>([]);
   const [header, setHeader] = useState<PageHeaderType>();
   const [loading, setLoading] = useState(true);
+
+  MetaTags({ headerData: header })
 
   useEffect(() => {
     async function fetchBlogPosts() {
@@ -28,7 +31,7 @@ export default function BlogPosts({ pageColor }: BlogPostsProps) {
   return (
     <main>
       {header?.title ?
-        <PageHeader title={header.title} content={header.description?.json} headerColor={pageColor} />
+        <PageHeader title={header.title} content={header.description!} headerColor={pageColor} />
         : "loading"}
 
       {loading ? <p>Loading...</p> : (

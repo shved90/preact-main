@@ -1,4 +1,4 @@
-type QueryKey = 'PageHeader' | 'Blog' | 'BlogPost' | 'JobList' | 'Job' | 'Projects' | 'latestProjectsAndJobs';
+type QueryKey = 'PageHeader' | 'Blog' | 'BlogPost' | 'JobList' | 'Job' | 'Projects' | 'latestProjectsAndJobs' | 'latestProjectsAndBlog';
 
 const queryMap: Record<QueryKey, string> = {
 
@@ -9,19 +9,7 @@ const queryMap: Record<QueryKey, string> = {
           __typename
           title
           pageName
-          description{
-            json
-            links {
-              assets {
-                hyperlink {
-                  sys {
-                    id
-                  }
-                  url
-                }
-              }
-            }
-          }
+          description
         }
       }
     }
@@ -34,9 +22,7 @@ const queryMap: Record<QueryKey, string> = {
           __typename
           title
           slug
-          summary {
-            json
-          }
+          summary
           sys {
             publishedAt
             firstPublishedAt
@@ -58,6 +44,7 @@ const queryMap: Record<QueryKey, string> = {
             __typename
             title
             slug
+            summary
             content {
               json
             }
@@ -88,9 +75,7 @@ const queryMap: Record<QueryKey, string> = {
           slug
           role
           location
-          shortSummary{
-            json
-          }
+          summary
           description{
             json
           }
@@ -117,11 +102,13 @@ const queryMap: Record<QueryKey, string> = {
             slug
             role
             location
-            shortSummary{
-              json
-            }
+            summary
             description{
               json
+            }
+            sys {
+              publishedAt
+              firstPublishedAt
             }
             contentfulMetadata{
               tags{
@@ -140,9 +127,7 @@ const queryMap: Record<QueryKey, string> = {
           __typename
           title
           slug
-          summary {
-            json
-          }
+          summary
           sys {
             publishedAt
             firstPublishedAt
@@ -164,9 +149,7 @@ const queryMap: Record<QueryKey, string> = {
           __typename
           title
           slug
-          summary {
-            json
-          }
+          summary
           sys {
             publishedAt
             firstPublishedAt
@@ -189,11 +172,48 @@ const queryMap: Record<QueryKey, string> = {
           slug
           role
           location
-          shortSummary{
-            json
-          }
+          summary
           description{
             json
+          }
+          contentfulMetadata{
+            tags{
+              name
+            }
+          }
+        }
+      }
+    }
+  `,
+
+  latestProjectsAndBlog: `
+    query getLatestProjectsAndBlog {
+      projectsCollection(limit: 4, order:  sys_firstPublishedAt_DESC) {
+        items {
+          __typename
+          title
+          slug
+          summary
+          sys {
+            publishedAt
+            firstPublishedAt
+          }
+          contentfulMetadata{
+            tags{
+              name
+            }
+          }
+        }
+      }
+      blogCollection(limit: 4, order: sys_firstPublishedAt_DESC) {
+        items{
+          __typename
+          title
+          slug
+          summary
+          sys {
+            publishedAt
+            firstPublishedAt
           }
           contentfulMetadata{
             tags{
@@ -214,6 +234,7 @@ type QueryVariablesMap = {
   Job: { variable: string };
   Projects: undefined;
   latestProjectsAndJobs: undefined;
+  latestProjectsAndBlog: undefined
 };
 
 type MaybeArray<T> = T | T[];
@@ -254,6 +275,5 @@ export async function gqlfetch<K extends QueryKey>(
       console.error(`Error fetching ${key}:`, err);
     }
   }
-
   return results as Record<K, any>;
 }

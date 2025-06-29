@@ -529,7 +529,7 @@ export type Blog = Entry & _Node & {
   contentfulMetadata: ContentfulMetadata;
   linkedFrom?: Maybe<BlogLinkingCollections>;
   slug?: Maybe<Scalars['String']['output']>;
-  summary?: Maybe<BlogSummary>;
+  summary?: Maybe<Scalars['String']['output']>;
   sys: Sys;
   title?: Maybe<Scalars['String']['output']>;
 };
@@ -634,9 +634,13 @@ export type BlogFilter = {
   slug_not?: InputMaybe<Scalars['String']['input']>;
   slug_not_contains?: InputMaybe<Scalars['String']['input']>;
   slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  summary?: InputMaybe<Scalars['String']['input']>;
   summary_contains?: InputMaybe<Scalars['String']['input']>;
   summary_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  summary_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  summary_not?: InputMaybe<Scalars['String']['input']>;
   summary_not_contains?: InputMaybe<Scalars['String']['input']>;
+  summary_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sys?: InputMaybe<SysFilter>;
   title?: InputMaybe<Scalars['String']['input']>;
   title_contains?: InputMaybe<Scalars['String']['input']>;
@@ -674,54 +678,6 @@ export enum BlogOrder {
   TitleAsc = 'title_ASC',
   TitleDesc = 'title_DESC'
 }
-
-export type BlogSummary = {
-  __typename?: 'BlogSummary';
-  json: Scalars['JSON']['output'];
-  links: BlogSummaryLinks;
-};
-
-export type BlogSummaryAssets = {
-  __typename?: 'BlogSummaryAssets';
-  block: Array<Maybe<Asset>>;
-  hyperlink: Array<Maybe<Asset>>;
-};
-
-export type BlogSummaryEntries = {
-  __typename?: 'BlogSummaryEntries';
-  block: Array<Maybe<Entry>>;
-  hyperlink: Array<Maybe<Entry>>;
-  inline: Array<Maybe<Entry>>;
-};
-
-export type BlogSummaryLinks = {
-  __typename?: 'BlogSummaryLinks';
-  assets: BlogSummaryAssets;
-  entries: BlogSummaryEntries;
-  resources: BlogSummaryResources;
-};
-
-export type BlogSummaryResources = {
-  __typename?: 'BlogSummaryResources';
-  block: Array<BlogSummaryResourcesBlock>;
-  hyperlink: Array<BlogSummaryResourcesHyperlink>;
-  inline: Array<BlogSummaryResourcesInline>;
-};
-
-export type BlogSummaryResourcesBlock = ResourceLink & {
-  __typename?: 'BlogSummaryResourcesBlock';
-  sys: ResourceSys;
-};
-
-export type BlogSummaryResourcesHyperlink = ResourceLink & {
-  __typename?: 'BlogSummaryResourcesHyperlink';
-  sys: ResourceSys;
-};
-
-export type BlogSummaryResourcesInline = ResourceLink & {
-  __typename?: 'BlogSummaryResourcesInline';
-  sys: ResourceSys;
-};
 
 export type ContentfulMetadata = {
   __typename?: 'ContentfulMetadata';
@@ -904,10 +860,10 @@ export type Job = Entry & _Node & {
   linkedFrom?: Maybe<JobLinkingCollections>;
   location?: Maybe<Scalars['String']['output']>;
   role?: Maybe<Scalars['String']['output']>;
-  shortSummary?: Maybe<JobShortSummary>;
   slug?: Maybe<Scalars['String']['output']>;
   startDate?: Maybe<Scalars['DateTime']['output']>;
   strapline?: Maybe<Scalars['String']['output']>;
+  summary?: Maybe<Scalars['String']['output']>;
   sys: Sys;
 };
 
@@ -955,12 +911,6 @@ export type JobRoleArgs = {
 
 
 /** Places I worked at [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/job) */
-export type JobShortSummaryArgs = {
-  locale?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-/** Places I worked at [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/job) */
 export type JobSlugArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
@@ -974,6 +924,12 @@ export type JobStartDateArgs = {
 
 /** Places I worked at [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/job) */
 export type JobStraplineArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+/** Places I worked at [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/job) */
+export type JobSummaryArgs = {
   locale?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -1077,9 +1033,6 @@ export type JobFilter = {
   role_not?: InputMaybe<Scalars['String']['input']>;
   role_not_contains?: InputMaybe<Scalars['String']['input']>;
   role_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  shortSummary_contains?: InputMaybe<Scalars['String']['input']>;
-  shortSummary_exists?: InputMaybe<Scalars['Boolean']['input']>;
-  shortSummary_not_contains?: InputMaybe<Scalars['String']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
   slug_contains?: InputMaybe<Scalars['String']['input']>;
   slug_exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1103,6 +1056,13 @@ export type JobFilter = {
   strapline_not?: InputMaybe<Scalars['String']['input']>;
   strapline_not_contains?: InputMaybe<Scalars['String']['input']>;
   strapline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  summary?: InputMaybe<Scalars['String']['input']>;
+  summary_contains?: InputMaybe<Scalars['String']['input']>;
+  summary_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  summary_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  summary_not?: InputMaybe<Scalars['String']['input']>;
+  summary_not_contains?: InputMaybe<Scalars['String']['input']>;
+  summary_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sys?: InputMaybe<SysFilter>;
 };
 
@@ -1146,60 +1106,12 @@ export enum JobOrder {
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
 }
 
-export type JobShortSummary = {
-  __typename?: 'JobShortSummary';
-  json: Scalars['JSON']['output'];
-  links: JobShortSummaryLinks;
-};
-
-export type JobShortSummaryAssets = {
-  __typename?: 'JobShortSummaryAssets';
-  block: Array<Maybe<Asset>>;
-  hyperlink: Array<Maybe<Asset>>;
-};
-
-export type JobShortSummaryEntries = {
-  __typename?: 'JobShortSummaryEntries';
-  block: Array<Maybe<Entry>>;
-  hyperlink: Array<Maybe<Entry>>;
-  inline: Array<Maybe<Entry>>;
-};
-
-export type JobShortSummaryLinks = {
-  __typename?: 'JobShortSummaryLinks';
-  assets: JobShortSummaryAssets;
-  entries: JobShortSummaryEntries;
-  resources: JobShortSummaryResources;
-};
-
-export type JobShortSummaryResources = {
-  __typename?: 'JobShortSummaryResources';
-  block: Array<JobShortSummaryResourcesBlock>;
-  hyperlink: Array<JobShortSummaryResourcesHyperlink>;
-  inline: Array<JobShortSummaryResourcesInline>;
-};
-
-export type JobShortSummaryResourcesBlock = ResourceLink & {
-  __typename?: 'JobShortSummaryResourcesBlock';
-  sys: ResourceSys;
-};
-
-export type JobShortSummaryResourcesHyperlink = ResourceLink & {
-  __typename?: 'JobShortSummaryResourcesHyperlink';
-  sys: ResourceSys;
-};
-
-export type JobShortSummaryResourcesInline = ResourceLink & {
-  __typename?: 'JobShortSummaryResourcesInline';
-  sys: ResourceSys;
-};
-
 /** top page blurb - title and description [See type definition](https://app.contentful.com/spaces/crvsrxi576sk/content_types/pageHeader) */
 export type PageHeader = Entry & _Node & {
   __typename?: 'PageHeader';
   _id: Scalars['ID']['output'];
   contentfulMetadata: ContentfulMetadata;
-  description?: Maybe<PageHeaderDescription>;
+  description?: Maybe<Scalars['String']['output']>;
   linkedFrom?: Maybe<PageHeaderLinkingCollections>;
   pageName?: Maybe<Scalars['String']['output']>;
   sys: Sys;
@@ -1238,61 +1150,17 @@ export type PageHeaderCollection = {
   total: Scalars['Int']['output'];
 };
 
-export type PageHeaderDescription = {
-  __typename?: 'PageHeaderDescription';
-  json: Scalars['JSON']['output'];
-  links: PageHeaderDescriptionLinks;
-};
-
-export type PageHeaderDescriptionAssets = {
-  __typename?: 'PageHeaderDescriptionAssets';
-  block: Array<Maybe<Asset>>;
-  hyperlink: Array<Maybe<Asset>>;
-};
-
-export type PageHeaderDescriptionEntries = {
-  __typename?: 'PageHeaderDescriptionEntries';
-  block: Array<Maybe<Entry>>;
-  hyperlink: Array<Maybe<Entry>>;
-  inline: Array<Maybe<Entry>>;
-};
-
-export type PageHeaderDescriptionLinks = {
-  __typename?: 'PageHeaderDescriptionLinks';
-  assets: PageHeaderDescriptionAssets;
-  entries: PageHeaderDescriptionEntries;
-  resources: PageHeaderDescriptionResources;
-};
-
-export type PageHeaderDescriptionResources = {
-  __typename?: 'PageHeaderDescriptionResources';
-  block: Array<PageHeaderDescriptionResourcesBlock>;
-  hyperlink: Array<PageHeaderDescriptionResourcesHyperlink>;
-  inline: Array<PageHeaderDescriptionResourcesInline>;
-};
-
-export type PageHeaderDescriptionResourcesBlock = ResourceLink & {
-  __typename?: 'PageHeaderDescriptionResourcesBlock';
-  sys: ResourceSys;
-};
-
-export type PageHeaderDescriptionResourcesHyperlink = ResourceLink & {
-  __typename?: 'PageHeaderDescriptionResourcesHyperlink';
-  sys: ResourceSys;
-};
-
-export type PageHeaderDescriptionResourcesInline = ResourceLink & {
-  __typename?: 'PageHeaderDescriptionResourcesInline';
-  sys: ResourceSys;
-};
-
 export type PageHeaderFilter = {
   AND?: InputMaybe<Array<InputMaybe<PageHeaderFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<PageHeaderFilter>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  description?: InputMaybe<Scalars['String']['input']>;
   description_contains?: InputMaybe<Scalars['String']['input']>;
   description_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  description_not?: InputMaybe<Scalars['String']['input']>;
   description_not_contains?: InputMaybe<Scalars['String']['input']>;
+  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   pageName?: InputMaybe<Scalars['String']['input']>;
   pageName_contains?: InputMaybe<Scalars['String']['input']>;
   pageName_exists?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1345,7 +1213,7 @@ export type Projects = Entry & _Node & {
   contentfulMetadata: ContentfulMetadata;
   linkedFrom?: Maybe<ProjectsLinkingCollections>;
   slug?: Maybe<Scalars['String']['output']>;
-  summary?: Maybe<ProjectsSummary>;
+  summary?: Maybe<Scalars['String']['output']>;
   sys: Sys;
   title?: Maybe<Scalars['String']['output']>;
 };
@@ -1393,9 +1261,13 @@ export type ProjectsFilter = {
   slug_not?: InputMaybe<Scalars['String']['input']>;
   slug_not_contains?: InputMaybe<Scalars['String']['input']>;
   slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  summary?: InputMaybe<Scalars['String']['input']>;
   summary_contains?: InputMaybe<Scalars['String']['input']>;
   summary_exists?: InputMaybe<Scalars['Boolean']['input']>;
+  summary_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  summary_not?: InputMaybe<Scalars['String']['input']>;
   summary_not_contains?: InputMaybe<Scalars['String']['input']>;
+  summary_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   sys?: InputMaybe<SysFilter>;
   title?: InputMaybe<Scalars['String']['input']>;
   title_contains?: InputMaybe<Scalars['String']['input']>;
@@ -1433,54 +1305,6 @@ export enum ProjectsOrder {
   TitleAsc = 'title_ASC',
   TitleDesc = 'title_DESC'
 }
-
-export type ProjectsSummary = {
-  __typename?: 'ProjectsSummary';
-  json: Scalars['JSON']['output'];
-  links: ProjectsSummaryLinks;
-};
-
-export type ProjectsSummaryAssets = {
-  __typename?: 'ProjectsSummaryAssets';
-  block: Array<Maybe<Asset>>;
-  hyperlink: Array<Maybe<Asset>>;
-};
-
-export type ProjectsSummaryEntries = {
-  __typename?: 'ProjectsSummaryEntries';
-  block: Array<Maybe<Entry>>;
-  hyperlink: Array<Maybe<Entry>>;
-  inline: Array<Maybe<Entry>>;
-};
-
-export type ProjectsSummaryLinks = {
-  __typename?: 'ProjectsSummaryLinks';
-  assets: ProjectsSummaryAssets;
-  entries: ProjectsSummaryEntries;
-  resources: ProjectsSummaryResources;
-};
-
-export type ProjectsSummaryResources = {
-  __typename?: 'ProjectsSummaryResources';
-  block: Array<ProjectsSummaryResourcesBlock>;
-  hyperlink: Array<ProjectsSummaryResourcesHyperlink>;
-  inline: Array<ProjectsSummaryResourcesInline>;
-};
-
-export type ProjectsSummaryResourcesBlock = ResourceLink & {
-  __typename?: 'ProjectsSummaryResourcesBlock';
-  sys: ResourceSys;
-};
-
-export type ProjectsSummaryResourcesHyperlink = ResourceLink & {
-  __typename?: 'ProjectsSummaryResourcesHyperlink';
-  sys: ResourceSys;
-};
-
-export type ProjectsSummaryResourcesInline = ResourceLink & {
-  __typename?: 'ProjectsSummaryResourcesInline';
-  sys: ResourceSys;
-};
 
 export type Query = {
   __typename?: 'Query';

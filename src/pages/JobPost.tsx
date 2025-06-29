@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'preact/hooks';
-import { gqlfetch } from '../utils/data';
+import { gqlfetch } from '../utils/Data';
 import { Job } from '../../gql/graphql';
 import RichText from '@madebyconnor/rich-text-to-jsx'
 import { INLINES } from '@contentful/rich-text-types';
 import { Hyperlink } from '../components/RichTextElems/Hyperlink';
 import { ThemeColors } from '../utils/ThemeColor';
 import { PageHeader } from '../components/PageHeader';
-import { dateFormat } from '../utils/utils';
+import { dateFormat } from '../utils/DateFormat';
 import { Tags } from '../components/Tags';
+import { MetaTags } from '../utils/MetaTags';
+
 interface JobPostProps {
   url: string
   pageColor: typeof ThemeColors[keyof typeof ThemeColors];
@@ -17,6 +19,8 @@ export default function JobPost({ url, pageColor }: JobPostProps) {
 
   const [JobPost, setJobPost] = useState<Job>();
   const [loading, setLoading] = useState(true);
+
+  MetaTags({ metaData: JobPost })
 
   const startDate = dateFormat({ date: JobPost?.startDate, isPubDate: true, hideDay: true })
   const endDate = dateFormat({ date: JobPost?.endDate, hideDay: true })
@@ -32,13 +36,13 @@ export default function JobPost({ url, pageColor }: JobPostProps) {
 
   if (loading) return <p>Loading...</p>;
   if (!JobPost) return <p>Post not found</p>;
-  console.log(JobPost)
+
   return (
     <article>
-      {JobPost.companyName && <PageHeader title={JobPost.companyName} content={JobPost.strapline} headerColor={pageColor} />}
+      {JobPost.companyName && <PageHeader title={JobPost.companyName} content={JobPost.strapline!} headerColor={pageColor} />}
 
       <section class="richTextStyling">
-        
+
         <p><span class='inline-block w-20'>Role:</span> {JobPost.role}</p>
         <p><span class='inline-block w-20'>Period:</span> {startDate} - {endDate}</p>
         <p><span class='inline-block w-20'>Website:</span> <a href={JobPost.companyUrl!} target="_blank" rel="noopener noreferrer" class={pageColor.link}>{JobPost.companyUrl}</a></p>

@@ -7,7 +7,7 @@ interface InterestCalculatorProps {
 }
 
 export default function InterestCalculator({ pageColor }: InterestCalculatorProps) {
-
+  
   return (
     <article>
       <PageHeader title='Interest Calculator' content='some text here' headerColor={pageColor} />

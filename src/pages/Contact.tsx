@@ -1,8 +1,9 @@
 import { useEffect, useState } from "preact/hooks";
-import { gqlfetch } from "../utils/data";
+import { gqlfetch } from "../utils/Data";
 import { PageHeader as PageHeaderType } from "../../gql/graphql";
 import { PageHeader } from "../components/PageHeader";
 import { ThemeColors } from "../utils/ThemeColor";
+import { MetaTags } from "../utils/MetaTags";
 
 interface ContactProps {
   pageColor: typeof ThemeColors[keyof typeof ThemeColors];
@@ -10,6 +11,8 @@ interface ContactProps {
 
 export default function Contact({ pageColor }: ContactProps) {
   const [header, setHeader] = useState<PageHeaderType>();
+  
+  MetaTags({ headerData: header })
 
   useEffect(() => {
     (async () => {
@@ -25,7 +28,7 @@ export default function Contact({ pageColor }: ContactProps) {
   return (
     <main>
       {header?.title ?
-        <PageHeader title={header.title} content={header.description?.json} headerColor={pageColor} />
+        <PageHeader title={header.title} content={header.description!} headerColor={pageColor} />
         : "loading"}
 
       <form name="contact" method="POST" data-netlify="true" netlify-honeypot="subject" class='mt-8'>

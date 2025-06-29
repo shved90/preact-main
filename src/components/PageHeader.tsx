@@ -1,10 +1,9 @@
 import { Scalars } from '../../gql/graphql';
-import RichText from '@madebyconnor/rich-text-to-jsx'
 import { ThemeColors } from "../utils/ThemeColor";
 
 interface PageHeaderProps {
   title: string,
-  content?: Scalars["JSON"]["output"] | string;
+  content?: Scalars["String"]["output"] | string;
   headerColor: typeof ThemeColors[keyof typeof ThemeColors];
 }
 
@@ -21,19 +20,13 @@ const PageHeader = ({ title, content, headerColor }: PageHeaderProps) => {
     desktop: 'md:w-2xl'
   }
 
-  const parsedContent = !content 
-    ? null
-    : typeof content === 'string'
-      ? <p class='my-4 text-lg'>{content}</p>
-      : <RichText richText={content} />
 
-  document.title=title + ' - by Alexander Shved'
 
   return (
-    <header>
-      <h1 class={titleStyles.mobile + ' ' + headerColor.text}>{title}</h1>
-      <div class={contentStyling.mobile + ' ' + contentStyling.desktop}>{parsedContent}</div>
-    </header>
+      <header>
+        <h1 class={titleStyles.mobile + ' ' + headerColor.text}>{title}</h1>
+        {content &&<div class={'my-4 text-lg ' + contentStyling.mobile + ' ' + contentStyling.desktop}>{content}</div>}
+      </header>
   );
 }
 
