@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
-@source inline("{dark:}bg-{green,orange,blue,purple}");
+@source inline("{dark:}bg-{green,orange,blue,purple} {dark:}border-{green,orange,blue,purple}");
 
 @theme {
   --color-green: #9d5;

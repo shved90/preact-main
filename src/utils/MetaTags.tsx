@@ -43,10 +43,10 @@ const MetaTags = ({ metaData, headerData }: MetaTagDataProps) => {
 
   const metaTitle =
     metaData && metaData.__typename === 'Job'
-      ? `${metaData.role} at ${metaData.companyName}`
+      ? `${metaData.role} at ${metaData.companyName} - Alexander Shved`
       : metaData && metaData.__typename === 'Blog'
-        ? metaData.title
-        : headerData?.title ?? fallbackTitle;
+        ? `${metaData.title} - Blog by Alexander Shved`
+        : (headerData?.title && `${headerData?.title} - by Alexander Shved`) ?? fallbackTitle;
 
   const metaDescription = metaData && metaData.summary || headerData && headerData?.description
 
@@ -80,6 +80,9 @@ const MetaTags = ({ metaData, headerData }: MetaTagDataProps) => {
   };
 
   useEffect(() => {
+    if (!metaData && !headerData) return;
+
+    document.title = metaTitle ?? fallbackTitle
     getBaseMeta('og:type', headerData ? 'website' : 'article');
     getBaseMeta('og:title', metaTitle ?? fallbackTitle);
     getBaseMeta('og:url', typeof window !== 'undefined' ? window.location.href : '');
